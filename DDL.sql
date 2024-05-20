@@ -108,5 +108,52 @@ create table app.address
 	constraint fk_address_street foreign key (street_id) references app.street(street_id)
 );
 
+drop table if exists app.address_type;
+create table app.address_type
+(
+	address_type_id smallserial,
+	address_type_name varchar(20),
+	address_type_name_ascii varchar(20),
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_address_type primary key (address_type_id)
+);
+
+drop table if exists app.client;
+create table app.client
+(
+	client_id serial,
+	client_first_name varchar(100),
+	client_middle_name varchar(100) null,
+	client_last_name varchar(100) null,
+	cpf char(13) null,
+	rg  varchar(100) null,
+	date_of_birth date null,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_client primary key (client_id)
+);
+
+drop table if exists app.client_address;
+create table app.client_address
+(
+	client_id integer,
+	address_id integer,
+	address_type_id smallint,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_client_address primary key (client_id, address_id, address_type_id),
+	constraint fk_client_address_client foreign key (client_id) references app.client(client_id),
+	constraint fk_client_address_address foreign key (address_id) references app.address(address_id),
+	constraint fk_client_address_address_type foreign key (address_type_id) references app.address_type(address_type_id)
+);
+
+
 
 
