@@ -153,6 +153,50 @@ create table app.customer_address
 	constraint fk_customer_address_address_type foreign key (address_type_id) references app.address_type(address_type_id)
 );
 
+drop table if exists app.drugstore;
+create table app.drugstore
+(
+	drugstore_id serial,
+	drugstore_name varchar(200),
+	dugrstore_name_ascii varchar(200),
+	address_id integer,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_drugstore primary key (drugstore_id),
+	constraint fk_drugstore_address foreign key (address_id) references app.address(address_id)
+);
+
+drop table if exists app.drugstore_neighborhood_subscription;
+create table app.drugstore_neighborhood_subscription
+(
+	drugstore_id integer,
+	neighborhood_id integer,
+	is_active boolean,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_drugstore_neighborhood_subscription primary key (drugstore_id, neighborhood_id),
+	constraint fk_drugstore_neighborhood_subscription_neighborhood foreign key (neighborhood_id) references app.neighborhood(neighborhood_id),
+	constraint fk_drugstore_neighborhood_subscription_drugstore foreign key (drugstore_id) references app.drugstore(drugstore_id)
+);
+
+drop table if exists app.quote;
+create table app.quote
+(
+	quote_id bigserial,
+	neighborhood_id integer,
+	is_expired boolean default false,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_quote primary key (quote_id),
+	constraint fk_quote_neighborhood foreign key (neighborhood_id) references app.neighborhood(neighborhood_id)
+);
+
 
 
 
