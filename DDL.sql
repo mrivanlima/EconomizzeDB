@@ -119,6 +119,24 @@ create table app.customer
 	constraint pk_customer primary key (customer_id)
 );
 
+drop table if exists app.customer_login;
+create table app.customer_login
+(
+	customer_id integer,
+	username varchar(100),
+	password varchar(100),
+	password_hash varchar(100),
+	password_salt varchar(100),
+	is_verified boolean default false,
+	is_active boolean default false,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_customer_login primary key (customer_id),
+	constraint fk_customer_login_customer foreign key (customer_id) references app.customer(customer_id)
+);
+
 drop table if exists app.customer_address;
 create table app.customer_address
 (
