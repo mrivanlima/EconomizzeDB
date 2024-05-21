@@ -187,6 +187,7 @@ drop table if exists app.quote;
 create table app.quote
 (
 	quote_id bigserial,
+	customer_id integer,
 	neighborhood_id integer,
 	is_expired boolean default false,
 	created_by integer not null,
@@ -194,7 +195,39 @@ create table app.quote
 	modified_by integer not null,
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_quote primary key (quote_id),
-	constraint fk_quote_neighborhood foreign key (neighborhood_id) references app.neighborhood(neighborhood_id)
+	constraint fk_quote_neighborhood foreign key (neighborhood_id) references app.neighborhood(neighborhood_id),
+	constraint fk_quote_customer foreign key (customer_id) references app.customer(customer_id)
+);
+
+drop table if exists app.product;
+create table app.product
+(
+	product_id serial,
+	product_name varchar(200),
+	product_concentration varchar(20),
+	Product_quantity smallint,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_product primary key (product_id)
+);
+
+drop table if exists app.quote_product;
+create table app.quote_product
+(
+	quote_id   bigint,
+	product_id integer,
+	product_name varchar(200),
+	product_concentration varchar(20),
+	Product_quantity smallint,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_product primary key (product_id),
+	constraint fk_quote_product_quote foreign key (quote_id) references app.quote(quote_id),
+	constraint fk_quote_product_product foreign key (product_id) references app.product(product_id)
 );
 
 
