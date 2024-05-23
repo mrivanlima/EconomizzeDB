@@ -1,6 +1,6 @@
 create schema if not exists app;
 
-CALL drop_foreign_keys();
+CALL app.drop_foreign_keys();
 
 drop table if exists app.error_log;
 
