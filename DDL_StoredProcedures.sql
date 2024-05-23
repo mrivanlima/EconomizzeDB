@@ -47,7 +47,7 @@ begin
     cpf := trim(cpf);
     rg := trim(rg);
    
-   begin
+    begin
         if cpf is not null and length(cpf) < 11 then
             raise exception 'cpf dever ser de 11 caracteres.';
         end if;
