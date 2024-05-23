@@ -27,7 +27,7 @@ $$ language plpgsql;
 -----------------------------------------------------------------
 create or replace procedure app.usp_api_customer_create(
         out out_customer_id integer,
-        out error boolean,
+        inout error boolean default false,
         in customer_first_name varchar(100),
         in customer_middle_name varchar(100) default null,
 	    in customer_last_name varchar(100),
