@@ -25,7 +25,6 @@ $$ language plpgsql;
 -----------------------------------------------------------------
 --Create procedure to add new customer 
 -----------------------------------------------------------------
-
 create or replace procedure app.usp_api_customer_create(
         out out_customer_id integer,
         out error boolean,
@@ -72,12 +71,12 @@ begin
             date_of_birth
         ) returning customer_id into out_customer_id;  
 
-    exception
-        when others then
-            error := true;
-            get stacked diagnostics l_context = pg_exception_context;
-        	insert into app.error_log (error_message, error_code, error_line)
-            values (sqlerrm, sqlstate, l_context);
+        exception
+            when others then
+                error := true;
+                get stacked diagnostics l_context = pg_exception_context;
+                insert into app.error_log (error_message, error_code, error_line)
+                values (sqlerrm, sqlstate, l_context);
     end;  
 end;
 $$;
