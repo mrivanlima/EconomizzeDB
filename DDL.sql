@@ -136,7 +136,6 @@ create table app.user_login
 	user_id integer,
 	username varchar(100) not null,
 	email varchar(200) not null,
-	password varchar(100) not null,
 	password_hash varchar(100) not null,
 	password_salt varchar(100) not null,
 	is_verified boolean default false,
