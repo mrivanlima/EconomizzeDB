@@ -113,13 +113,13 @@ create table app.address_type
 	constraint pk_address_type primary key (address_type_id)
 );
 
-drop table if exists app.customer;
-create table app.customer
+drop table if exists app.user;
+create table app.user
 (
-	customer_id serial,
-	customer_first_name varchar(100),
-	customer_middle_name varchar(100) null,
-	customer_last_name varchar(100) null,
+	user_id serial,
+	user_first_name varchar(100),
+	user_middle_name varchar(100) null,
+	user_last_name varchar(100) null,
 	cpf char(11) null,
 	rg  varchar(100) null,
 	date_of_birth date null,
@@ -127,41 +127,45 @@ create table app.customer
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer null,
 	modified_on timestamp with time zone default current_timestamp,
-	constraint pk_customer primary key (customer_id)
+	constraint pk_user primary key (user_id)
 );
 
-drop table if exists app.customer_login;
-create table app.customer_login
+drop table if exists app.user_login;
+create table app.user_login
 (
-	customer_id integer,
-	username varchar(100),
-	password varchar(100),
-	password_hash varchar(100),
-	password_salt varchar(100),
+	user_id integer,
+	username varchar(100) not null,
+	email varchar(200) not null,
+	password varchar(100) not null,
+	password_hash varchar(100) not null,
+	password_salt varchar(100) not null,
 	is_verified boolean default false,
 	is_active boolean default false,
-	created_by integer not null,
+	is_locked boolean default false,
+	password_atempts smallint default 0,
+	locked_time timestamp with time zone,
+	created_by integer null,
 	created_on 	timestamp with time zone default current_timestamp,
-	modified_by integer not null,
+	modified_by integer null,
 	modified_on timestamp with time zone default current_timestamp,
-	constraint pk_customer_login primary key (customer_id),
-	constraint fk_customer_login_customer foreign key (customer_id) references app.customer(customer_id)
+	constraint pk_user_login primary key (user_id),
+	constraint fk_user_login_user foreign key (user_id) references app.user(user_id)
 );
 
-drop table if exists app.customer_address;
-create table app.customer_address
+drop table if exists app.user_address;
+create table app.user_address
 (
-	customer_id integer,
+	user_id integer,
 	address_id integer,
 	address_type_id smallint,
 	created_by integer not null,
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer not null,
 	modified_on timestamp with time zone default current_timestamp,
-	constraint pk_customer_address primary key (customer_id, address_id, address_type_id),
-	constraint fk_customer_address_customer foreign key (customer_id) references app.customer(customer_id),
-	constraint fk_customer_address_address foreign key (address_id) references app.address(address_id),
-	constraint fk_customer_address_address_type foreign key (address_type_id) references app.address_type(address_type_id)
+	constraint pk_user_address primary key (user_id, address_id, address_type_id),
+	constraint fk_user_address_user foreign key (user_id) references app.user(user_id),
+	constraint fk_user_address_address foreign key (address_id) references app.address(address_id),
+	constraint fk_user_address_address_type foreign key (address_type_id) references app.address_type(address_type_id)
 );
 
 drop table if exists app.drugstore;
@@ -198,7 +202,7 @@ drop table if exists app.quote;
 create table app.quote
 (
 	quote_id bigserial,
-	customer_id integer,
+	user_id integer,
 	neighborhood_id integer,
 	is_expired boolean default false,
 	created_by integer not null,
@@ -207,7 +211,7 @@ create table app.quote
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_quote primary key (quote_id),
 	constraint fk_quote_neighborhood foreign key (neighborhood_id) references app.neighborhood(neighborhood_id),
-	constraint fk_quote_customer foreign key (customer_id) references app.customer(customer_id)
+	constraint fk_quote_user foreign key (user_id) references app.user(user_id)
 );
 
 drop table if exists app.product;

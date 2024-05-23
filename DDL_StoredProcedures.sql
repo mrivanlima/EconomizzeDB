@@ -23,13 +23,13 @@ $$ language plpgsql;
 
 
 -----------------------------------------------------------------
---Create procedure to add new customer 
+--Create procedure to add new user 
 -----------------------------------------------------------------
-create or replace procedure app.usp_api_customer_create(
-        out out_customer_id integer,
-        in customer_first_name varchar(100),
-        in customer_middle_name varchar(100) default null,
-	    in customer_last_name varchar(100) default null,
+create or replace procedure app.usp_api_user_create(
+        out out_user_id integer,
+        in user_first_name varchar(100),
+        in user_middle_name varchar(100) default null,
+	    in user_last_name varchar(100) default null,
         in cpf char(11) default null,
 	    in rg  varchar(100) default null,
 	    in date_of_birth date default null,
@@ -39,9 +39,9 @@ as $$
 declare 
     l_context text;
 begin
-    customer_first_name := trim(customer_first_name);
-    customer_middle_name := trim(customer_middle_name);
-    customer_last_name := trim(customer_last_name);
+    user_first_name := trim(user_first_name);
+    user_middle_name := trim(user_middle_name);
+    user_last_name := trim(user_last_name);
     cpf := trim(cpf);
     rg := trim(rg);
    
@@ -50,24 +50,24 @@ begin
             raise exception 'cpf dever ser de 11 caracteres.';
         end if;
 
-        insert into app.customer
+        insert into app.user
         (
-            customer_first_name,
-            customer_middle_name,
-            customer_last_name,
+            user_first_name,
+            user_middle_name,
+            user_last_name,
             cpf,
             rg,
             date_of_birth
         ) 
         values 
         (
-            customer_first_name,
-            customer_middle_name,
-            customer_last_name,
+            user_first_name,
+            user_middle_name,
+            user_last_name,
             cpf,
             rg,
             date_of_birth
-        ) returning customer_id into out_customer_id;  
+        ) returning user_id into out_user_id;  
 
         exception
             when others then
