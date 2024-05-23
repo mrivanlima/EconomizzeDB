@@ -35,7 +35,6 @@ create or replace procedure app.usp_api_customer_create(
 	    in rg  varchar(100) default null,
 	    in date_of_birth date default null
 )
-language plpgsql
 as $$
 declare 
     l_context text;
@@ -79,4 +78,4 @@ begin
                 values (sqlerrm, sqlstate, l_context);
     end;  
 end;
-$$;
+$$ language plpgsql;
