@@ -27,19 +27,18 @@ $$ language plpgsql;
 -----------------------------------------------------------------
 create or replace procedure app.usp_api_customer_create(
         out out_customer_id integer,
-        inout error boolean default false,
         in customer_first_name varchar(100),
         in customer_middle_name varchar(100) default null,
-	    in customer_last_name varchar(100),
+	    in customer_last_name varchar(100) default null,
         in cpf char(11) default null,
 	    in rg  varchar(100) default null,
-	    in date_of_birth date default null
+	    in date_of_birth date default null,
+        inout error boolean default false
 )
 as $$
 declare 
     l_context text;
 begin
-    error := false;
     customer_first_name := trim(customer_first_name);
     customer_middle_name := trim(customer_middle_name);
     customer_last_name := trim(customer_last_name);
