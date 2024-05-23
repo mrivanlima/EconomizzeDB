@@ -73,8 +73,18 @@ begin
             when others then
                 error := true;
                 get stacked diagnostics l_context = pg_exception_context;
-                insert into app.error_log (error_message, error_code, error_line)
-                values (sqlerrm, sqlstate, l_context);
+                insert into app.error_log 
+                (
+                    error_message, 
+                    error_code, 
+                    error_line
+                )
+                values 
+                (
+                    sqlerrm, 
+                    sqlstate, 
+                    l_context
+                );
     end;  
 end;
 $$ language plpgsql;
