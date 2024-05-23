@@ -143,6 +143,7 @@ create table app.user_login
 	is_active boolean default false,
 	is_locked boolean default false,
 	password_atempts smallint default 0,
+	changed_initial_password boolean default false,
 	locked_time timestamp with time zone,
 	created_by integer null,
 	created_on 	timestamp with time zone default current_timestamp,
