@@ -1,6 +1,17 @@
 create schema if not exists app;
 
-SELECT drop_all_foreign_keys();
+CALL drop_foreign_keys();
+
+drop table if exists app.error_log;
+
+CREATE TABLE app.error_log (
+    error_log_id bigserial,
+    error_on timestamp with time zone default current_timestamp,
+    error_message text,
+    error_code varchar(100),
+	error_line text,
+	constraint pk_error_log primary key (error_log_id)
+);
 
 drop table if exists app.state;
 create table app.state
@@ -109,12 +120,12 @@ create table app.customer
 	customer_first_name varchar(100),
 	customer_middle_name varchar(100) null,
 	customer_last_name varchar(100) null,
-	cpf char(13) null,
+	cpf char(11) null,
 	rg  varchar(100) null,
 	date_of_birth date null,
-	created_by integer not null,
+	created_by integer null,
 	created_on 	timestamp with time zone default current_timestamp,
-	modified_by integer not null,
+	modified_by integer null,
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_customer primary key (customer_id)
 );
@@ -228,7 +239,3 @@ create table app.quote_product
 	constraint fk_quote_product_quote foreign key (quote_id) references app.quote(quote_id),
 	constraint fk_quote_product_product foreign key (product_id) references app.product(product_id)
 );
-
-
-
-
