@@ -132,7 +132,6 @@ DECLARE
 BEGIN
     BEGIN
         p_username := TRIM(p_username);
-        p_email := TRIM(p_email);
         -- Insert the new user login record into the app.user_login table
         INSERT INTO app.user_login (
             user_id,
@@ -250,4 +249,427 @@ BEGIN
     END IF;
 
 END;
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_state_create(
+    OUT p_out_state_id INTEGER,
+    IN p_state_name VARCHAR(50),
+    IN p_longitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_latitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE 
+        V_state_name_ascii VARCHAR(50);
+        l_context TEXT;
+BEGIN
+    BEGIN
+
+    p_state_name := TRIM(p_state_name);
+    v_state_name_ascii := unaccent(p_state_name);
+
+        INSERT INTO app.state 
+        (
+            state_name,
+            state_name_ascii,
+            longitude,
+            latitude,
+            created_by,
+            modified_by
+        )
+        VALUES 
+        (
+            p_state_name,
+            v_state_name_ascii,
+            p_longitude,
+            p_latitude,
+            p_created_by,
+            p_modified_by
+        ) RETURNING state_id INTO p_out_state_id;
+
+
+        EXCEPTION
+            WHEN OTHERS THEN
+                p_error := TRUE;
+                GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+                INSERT INTO app.error_log 
+                (
+                    error_message, 
+                    error_code, 
+                    error_line
+                )
+                VALUES 
+                (
+                    SQLERRM, 
+                    SQLSTATE, 
+                    l_context
+                );
+    END;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_city_create(
+    OUT p_out_city_id INTEGER,
+    IN p_city_name VARCHAR(50),
+    IN p_state_id SMALLINT,
+    IN p_longitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_latitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    v_city_name_ascii VARCHAR(50);
+    l_context TEXT;
+BEGIN
+    BEGIN
+        -- Trim and convert the city name to ASCII
+        p_city_name := TRIM(p_city_name);
+        v_city_name_ascii := unaccent(p_city_name);
+
+        -- Insert the new city record
+        INSERT INTO app.city 
+        (
+            city_name,
+            city_name_ascii,
+            longitude,
+            latitude,
+            state_id,
+            created_by,
+            modified_by
+        )
+        VALUES 
+        (
+            p_city_name,
+            v_city_name_ascii,
+            p_longitude,
+            p_latitude,
+            p_state_id,
+            p_created_by,
+            p_modified_by
+        ) RETURNING city_id INTO p_out_city_id;
+
+        EXCEPTION
+            WHEN OTHERS THEN
+                p_error := TRUE;
+                GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+                INSERT INTO app.error_log 
+                (
+                    error_message, 
+                    error_code, 
+                    error_line
+                )
+                VALUES 
+                (
+                    SQLERRM, 
+                    SQLSTATE, 
+                    l_context
+                );
+    END;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_neighborhood_create(
+    OUT p_out_neighborhood_id INTEGER,
+    IN p_neighborhood_name VARCHAR(50),
+    IN p_city_id SMALLINT,
+    IN p_longitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_latitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    v_neighborhood_name_ascii VARCHAR(50);
+    l_context TEXT;
+BEGIN
+    BEGIN
+        -- Trim and convert the neighborhood name to ASCII
+        p_neighborhood_name := TRIM(p_neighborhood_name);
+        v_neighborhood_name_ascii := unaccent(p_neighborhood_name);
+
+        -- Insert the new neighborhood record
+        INSERT INTO app.neighborhood 
+        (
+            neighborhood_name,
+            neighborhood_name_ascii,
+            longitude,
+            latitude,
+            city_id,
+            created_by,
+            modified_by
+        )
+        VALUES 
+        (
+            p_neighborhood_name,
+            v_neighborhood_name_ascii,
+            p_longitude,
+            p_latitude,
+            p_city_id,
+            p_created_by,
+            p_modified_by
+        ) RETURNING neighborhood_id INTO p_out_neighborhood_id;
+
+        EXCEPTION
+            WHEN OTHERS THEN
+                p_error := TRUE;
+                GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+                INSERT INTO app.error_log 
+                (
+                    error_message, 
+                    error_code, 
+                    error_line
+                )
+                VALUES 
+                (
+                    SQLERRM, 
+                    SQLSTATE, 
+                    l_context
+                );
+    END;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_street_create(
+    OUT p_out_street_id INTEGER,
+    IN p_street_name VARCHAR(50),
+    IN p_zipcode CHAR(8),
+    IN p_neighborhood_id INTEGER,
+    IN p_longitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_latitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    v_street_name_ascii VARCHAR(50);
+    l_context TEXT;
+BEGIN
+    BEGIN
+        -- Trim and convert the street name to ASCII
+        p_street_name := TRIM(p_street_name);
+        v_street_name_ascii := unaccent(p_street_name);
+
+        -- Insert the new street record
+        INSERT INTO app.street 
+        (
+            street_name,
+            street_name_ascii,
+            zipcode,
+            longitude,
+            latitude,
+            neighborhood_id,
+            created_by,
+            modified_by
+        )
+        VALUES 
+        (
+            p_street_name,
+            v_street_name_ascii,
+            p_zipcode,
+            p_longitude,
+            p_latitude,
+            p_neighborhood_id,
+            p_created_by,
+            p_modified_by
+        ) RETURNING street_id INTO p_out_street_id;
+
+        EXCEPTION
+            WHEN OTHERS THEN
+                p_error := TRUE;
+                GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+                INSERT INTO app.error_log 
+                (
+                    error_message, 
+                    error_code, 
+                    error_line
+                )
+                VALUES 
+                (
+                    SQLERRM, 
+                    SQLSTATE, 
+                    l_context
+                );
+    END;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_address_create(
+    OUT p_out_address_id INTEGER,
+    IN p_street_id INTEGER,
+    IN p_complement VARCHAR(200),
+    IN p_longitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_latitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    v_complement_ascii VARCHAR(200);
+    l_context TEXT;
+BEGIN
+    BEGIN
+        -- Trim and convert the complement to ASCII
+        p_complement := TRIM(p_complement);
+        v_complement_ascii := unaccent(p_complement);
+
+        -- Insert the new address record
+        INSERT INTO app.address 
+        (
+            street_id,
+            complement,
+            complement_ascii,
+            longitude,
+            latitude,
+            created_by,
+            modified_by
+        )
+        VALUES 
+        (
+            p_street_id,
+            p_complement,
+            v_complement_ascii,
+            p_longitude,
+            p_latitude,
+            p_created_by,
+            p_modified_by
+        ) RETURNING address_id INTO p_out_address_id;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            p_error := TRUE;
+            GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+            INSERT INTO app.error_log 
+            (
+                error_message, 
+                error_code, 
+                error_line
+            )
+            VALUES 
+            (
+                SQLERRM, 
+                SQLSTATE, 
+                l_context
+            );
+    END;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_address_type_create(
+    OUT p_out_address_type_id INTEGER,
+    IN p_address_type_name VARCHAR(20),
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    v_address_type_name_ascii VARCHAR(20);
+    l_context TEXT;
+BEGIN
+    BEGIN
+        -- Trim and convert the address type name to ASCII
+        p_address_type_name := TRIM(p_address_type_name);
+        v_address_type_name_ascii := unaccent(p_address_type_name);
+
+        -- Insert the new address type record
+        INSERT INTO app.address_type 
+        (
+            address_type_name,
+            address_type_name_ascii,
+            created_by,
+            modified_by
+        )
+        VALUES 
+        (
+            p_address_type_name,
+            v_address_type_name_ascii,
+            p_created_by,
+            p_modified_by
+        ) RETURNING address_type_id INTO p_out_address_type_id;
+
+        EXCEPTION
+            WHEN OTHERS THEN
+                p_error := TRUE;
+                GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+                INSERT INTO app.error_log 
+                (
+                    error_message, 
+                    error_code, 
+                    error_line
+                )
+                VALUES 
+                (
+                    SQLERRM, 
+                    SQLSTATE, 
+                    l_context
+                );
+    END;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_user_address_create(
+    IN p_user_id INTEGER,
+    IN p_address_id INTEGER,
+    IN p_address_type_id SMALLINT,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    l_context TEXT;
+BEGIN
+    BEGIN
+        -- Insert the new user address record
+        INSERT INTO app.user_address 
+        (
+            user_id,
+            address_id,
+            address_type_id,
+            created_by,
+            modified_by
+        )
+        VALUES 
+        (
+            p_user_id,
+            p_address_id,
+            p_address_type_id,
+            p_created_by,
+            p_modified_by
+        );
+
+        EXCEPTION
+            WHEN OTHERS THEN
+                p_error := TRUE;
+                GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+                INSERT INTO app.error_log 
+                (
+                    error_message, 
+                    error_code, 
+                    error_line
+                )
+                VALUES 
+                (
+                    SQLERRM, 
+                    SQLSTATE, 
+                    l_context
+                );
+    END;
+END;
+$$
+LANGUAGE plpgsql;
+
+
