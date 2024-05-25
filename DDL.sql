@@ -25,8 +25,7 @@ create table app.state
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer not null,
 	modified_on timestamp with time zone default current_timestamp,
-	constraint pk_state primary key (state_id),
-	constraint uk_state_name unique (state_name)
+	constraint pk_state primary key (state_id)
 );
 
 
@@ -120,6 +119,7 @@ create table app.user
 	user_first_name varchar(100),
 	user_middle_name varchar(100) null,
 	user_last_name varchar(100) null,
+	user_email varchar(250) not null,
 	cpf char(11) null,
 	rg  varchar(100) null,
 	date_of_birth date null,
@@ -127,7 +127,8 @@ create table app.user
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer null,
 	modified_on timestamp with time zone default current_timestamp,
-	constraint pk_user primary key (user_id)
+	constraint pk_user primary key (user_id),
+	constraint uk_user_email unique (user_email)
 );
 
 drop table if exists app.user_login;
@@ -135,7 +136,6 @@ create table app.user_login
 (
 	user_id integer,
 	username varchar(100) not null,
-	email varchar(200) not null,
 	password_hash varchar(100) not null,
 	password_salt varchar(100) not null,
 	is_verified boolean default false,
