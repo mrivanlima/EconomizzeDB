@@ -243,3 +243,101 @@ create table app.quote_product
 	constraint fk_quote_product_quote foreign key (quote_id) references app.quote(quote_id),
 	constraint fk_quote_product_product foreign key (product_id) references app.product(product_id)
 );
+
+drop table if exists app.role;
+create table app.role
+(
+	role_id   smallserial,
+	role_name varchar(50),
+	role_name_ascii varchar(50),
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_role primary key (role_id)
+);
+
+drop table if exists app.user_role;
+create table app.user_role
+(
+	role_id   smallint,
+	user_id   integer,
+	is_active boolean default true,
+	role_start_date timestamp with time zone,
+	role_end_date timestamp with time zone,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_user_role primary key (role_id, user_id),
+	constraint fk_user_role_role foreign key (role_id) references app.role(role_id),
+	constraint fk_user_role_user foreign key (user_id) references app.user(user_id)
+);
+
+drop table if exists app.group;
+create table app.group
+(
+	group_id   smallserial,
+	group_name varchar(50),
+	group_name_ascii varchar(50),
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_group primary key (group_id)
+);
+
+drop table if exists app.user_group;
+create table app.user_group
+(
+	group_id   smallint,
+	user_id   integer,
+	is_active boolean default true,
+	group_start_date timestamp with time zone,
+	group_end_date timestamp with time zone,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_user_group primary key (group_id, user_id),
+	constraint fk_user_group_group foreign key (group_id) references app.group(group_id),
+	constraint fk_user_group_user foreign key (user_id) references app.user(user_id)
+);
+
+
+--This is for Generic, Similar or Original only
+drop table if exists app.product_version;
+create table app.product_version
+(
+	product_version_id   smallint,
+	product_version_name   varchar(20),
+	product_version_ascii   varchar(20),
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_product_version primary key (product_version_id)
+);
+
+drop table if exists app.quote_product_response;
+create table app.quote_product_reponse
+(
+	quote_id   bigint,
+	product_id integer,
+	drugstore_id integer,
+	product_version_id integer,
+	regular_price numeric(10, 2),
+	discount_percentage numeric(10, 2),
+	final_price numeric(10, 2),
+	is_active boolean default true,
+	created_by integer not null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer not null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_quote_product_reponse primary key (quote_id, product_id, drugstore_id, product_version_id),
+	constraint fk_quote_product_response_quote foreign key (quote_id) references app.quote(quote_id),
+	constraint fk_quote_product_response_product foreign key (product_id) references app.product(product_id),
+	constraint fk_quote_product_response_drugstore foreign key (drugstore_id) references app.drugstore(drugstore_id),
+	constraint fk_quote_product_response_product_version foreign key (product_version_id) references app.product_version(product_version_id)
+);
+

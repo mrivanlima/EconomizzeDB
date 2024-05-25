@@ -86,7 +86,7 @@ BEGIN
             p_date_of_birth
         ) RETURNING user_id INTO p_out_user_id;  
 
-    EXCEPTION
+        EXCEPTION
         WHEN OTHERS THEN
             p_error := TRUE;
             GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT, l_error_line = PG_EXCEPTION_DETAIL;
