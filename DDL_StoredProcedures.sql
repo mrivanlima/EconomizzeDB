@@ -55,7 +55,7 @@ BEGIN
         WHERE user_email = p_user_email; 
 
         IF p_out_user_id IS NOT NULL THEN
-            RAISE NOTICE 'User found!';
+            RAISE NOTICE 'Usuario encontrado!';
             RETURN;
         END IF;
 
@@ -114,7 +114,6 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE PROCEDURE app.usp_user_login_create(
     IN p_user_id INTEGER,
     IN p_username VARCHAR(100),
-    IN p_email VARCHAR(200),
     IN p_password_hash VARCHAR(100),
     IN p_password_salt VARCHAR(100),
     IN p_is_verified BOOLEAN DEFAULT FALSE,
@@ -138,7 +137,6 @@ BEGIN
         INSERT INTO app.user_login (
             user_id,
             username,
-            email,
             password_hash,
             password_salt,
             is_verified,
@@ -156,7 +154,6 @@ BEGIN
         (
             p_user_id,
             p_username,
-            p_email,
             p_password_hash,
             p_password_salt,
             COALESCE(p_is_verified, FALSE),
@@ -195,4 +192,62 @@ $$ LANGUAGE plpgsql;
 -----------------------------------------------------------------
 --Create procedure to set up user
 -----------------------------------------------------------------
-CREATE OR REPLACE PROCEDURE app.usp_api_user_setup()
+CREATE OR REPLACE PROCEDURE app.usp_api_user_setup(
+    OUT p_out_user_id INTEGER,
+    IN p_user_first_name VARCHAR(100),
+    IN p_user_email VARCHAR(250),
+    IN p_username VARCHAR(100),
+    IN p_email VARCHAR(200),
+    IN p_password_hash VARCHAR(100),
+    IN p_password_salt VARCHAR(100),
+    IN p_user_middle_name VARCHAR(100) DEFAULT NULL,
+    IN p_user_last_name VARCHAR(100) DEFAULT NULL,
+    IN p_cpf CHAR(11) DEFAULT NULL,
+    IN p_rg VARCHAR(100) DEFAULT NULL,
+    IN p_date_of_birth DATE DEFAULT NULL,
+    IN p_is_verified BOOLEAN DEFAULT FALSE,
+    IN p_is_active BOOLEAN DEFAULT FALSE,
+    IN p_is_locked BOOLEAN DEFAULT FALSE,
+    IN p_password_attempts SMALLINT DEFAULT 0,
+    IN p_changed_initial_password BOOLEAN DEFAULT FALSE,
+    IN p_locked_time TIMESTAMPTZ DEFAULT NULL,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+BEGIN
+    CALL app.usp_api_user_create
+    (
+        p_out_user_id := v_out_user_id,
+        p_user_first_name := p_user_first_name,
+        p_user_email := p_user_email,
+        p_user_middle_name := p_user_middle_name,
+        p_user_last_name := p_user_last_name,
+        p_cpf := p_cpf,
+        p_rg := p_rg,
+        p_date_of_birth := p_date_of_birth ,
+        p_error := p_error
+    );
+
+    IF NOT p_error THEN
+        CALL app.usp_user_login_create
+        (
+            p_user_id := p_out_user_id,
+            p_username := p_username,
+            p_password_hash := p_password_hash,
+            p_password_salt := p_password_salt,
+            p_is_verified := p_is_verified,
+            p_is_active := p_is_active,
+            p_is_locked := p_is_locked,
+            p_password_attempts := p_password_attempts,
+            p_changed_initial_password := p_changed_initial_password,
+            p_locked_time := p_locked_time,
+            p_created_by := p_created_by,
+            p_modified_by := p_modified_by,
+            p_error := p_error
+        );
+    END IF;
+
+END;
+$$ LANGUAGE plpgsql
