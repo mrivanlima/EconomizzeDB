@@ -254,6 +254,7 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE PROCEDURE app.usp_api_state_create(
     OUT p_out_state_id SMALLINT,
     IN p_state_name VARCHAR(50),
+    IN p_state_uf CHAR(2),
     IN p_longitude DOUBLE PRECISION DEFAULT NULL,
     IN p_latitude DOUBLE PRECISION DEFAULT NULL,
     IN p_created_by INTEGER DEFAULT NULL,
@@ -273,6 +274,7 @@ BEGIN
         INSERT INTO app.state 
         (
             state_name,
+            state_uf,
             state_name_ascii,
             longitude,
             latitude,
@@ -282,6 +284,7 @@ BEGIN
         VALUES 
         (
             p_state_name,
+            p_state_uf,
             v_state_name_ascii,
             p_longitude,
             p_latitude,

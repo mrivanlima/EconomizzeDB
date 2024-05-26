@@ -21,6 +21,7 @@ create table app.state
 	state_id smallserial,
 	state_name varchar(50) not null,
 	state_name_ascii varchar(50) not null,
+	state_uf         char(2) not null,
 	longitude double precision null,
 	latitude  double precision null,
 	created_by integer not null,
