@@ -252,7 +252,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE PROCEDURE app.usp_api_state_create(
-    OUT p_out_state_id INTEGER,
+    OUT p_out_state_id SMALLINT,
     IN p_state_name VARCHAR(50),
     IN p_longitude DOUBLE PRECISION DEFAULT NULL,
     IN p_latitude DOUBLE PRECISION DEFAULT NULL,
