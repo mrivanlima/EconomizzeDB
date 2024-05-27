@@ -54,8 +54,8 @@ drop table if exists app.neighborhood;
 create table app.neighborhood
 (
 	neighborhood_id serial,
-	neighborhood_name varchar(50) not null,
-	neighborhood_name_ascii varchar(50) not null,
+	neighborhood_name varchar(100) not null,
+	neighborhood_name_ascii varchar(100) not null,
 	longitude double precision null,
 	latitude  double precision null,
 	city_id smallint,

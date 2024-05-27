@@ -732,6 +732,150 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE PROCEDURE app.usp_state_import()
+AS $$	
+BEGIN	
+	TRUNCATE TABLE app.state;
+	ALTER SEQUENCE app.state_state_id_seq RESTART WITH 1;
+	WITH states
+	AS(
+		SELECT DISTINCT
+			z.state_abbrev AS state_uf,
+			CASE 
+				WHEN z.state_abbrev = 'AC' THEN 'Acre'
+				WHEN z.state_abbrev = 'AL' THEN 'Alagoas'
+				WHEN z.state_abbrev = 'AM' THEN 'Amazonas'
+				WHEN z.state_abbrev = 'AP' THEN 'Amapá'
+				WHEN z.state_abbrev = 'BA' THEN 'Bahia'
+				WHEN z.state_abbrev = 'CE' THEN 'Ceará'
+			    WHEN z.state_abbrev = 'DF' THEN 'Distrito Federal'
+				WHEN z.state_abbrev = 'ES' THEN 'Espirito Santo'
+				WHEN z.state_abbrev = 'GO' THEN 'Goiás'
+				WHEN z.state_abbrev = 'MA' THEN 'Maranhão'
+				WHEN z.state_abbrev = 'MG' THEN 'Minas Gerais'
+				WHEN z.state_abbrev = 'MS' THEN 'Mato Grosso do Sul'
+				WHEN z.state_abbrev = 'MT' THEN 'Mato Grosso'
+				WHEN z.state_abbrev = 'PA' THEN 'Pará'
+				WHEN z.state_abbrev = 'PB' THEN 'Paraiba'
+			    WHEN z.state_abbrev = 'PE' THEN 'Pernambuco'
+				WHEN z.state_abbrev = 'PI' THEN 'Piauí'
+				WHEN z.state_abbrev = 'PR' THEN 'Paraná'
+				WHEN z.state_abbrev = 'RJ' THEN 'Rio de Janeiro'
+				WHEN z.state_abbrev = 'RN' THEN 'Rio Grande do Norte'
+				WHEN z.state_abbrev = 'RR' THEN 'Roraima'
+				WHEN z.state_abbrev = 'RS' THEN 'Rio Grande do Sul'
+				WHEN z.state_abbrev = 'SC' THEN 'Santa Catarina'
+				WHEN z.state_abbrev = 'SE' THEN 'Sergipe'
+			    WHEN z.state_abbrev = 'SP' THEN 'São Paulo'
+				WHEN z.state_abbrev = 'TO' THEN 'Tocantins'
+			END AS state_name,
+			NULLIF(trim(z.longitude), '') AS longitude,
+			NULLIF(trim(z.latitude), '') AS latitude
+		FROM imp.zip_info z
+	)
+	INSERT INTO app.state 
+	(
+		state_name, 
+		state_name_ascii, 
+		state_uf,
+		longitude,
+		latitude,
+		created_by,
+		modified_by
+	)	
+	SELECT 	state_name,
+			unaccent(state_name),
+			state_uf,
+			AVG(longitude::double precision) AS longitude,
+		    AVG(latitude::double precision) AS latitude,
+			0,
+			0
+	FROM states
+	GROUP BY state_name,
+			 state_uf
+	ORDER BY 1;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_city_import()
+AS $$	
+BEGIN
+
+	TRUNCATE TABLE app.city;
+	ALTER SEQUENCE app.city_city_id_seq RESTART WITH 1;
+	
+	INSERT INTO app.City
+	(
+		city_name,
+		city_name_ascii,
+		longitude,
+		latitude,
+		state_id,
+		created_by,
+		modified_by
+	)
+	
+	SELECT DISTINCT
+		 z.city_name
+		,unaccent(z.city_name)
+		,AVG(NULLIF(TRIM(z.longitude), '')::double precision) AS longitude
+		,AVG(NULLIF(TRIM(z.latitude), '')::double precision) AS latitude
+		,s.state_id
+		,0
+		,0
+	FROM imp.zip_info z
+		JOIN app.state s
+			ON s.state_uf = TRIM(z.state_abbrev)
+	
+	GROUP BY 
+	 z.city_name
+	,unaccent(z.city_name)
+	,s.state_id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_city_import()
+AS $$	
+BEGIN
+
+	TRUNCATE TABLE app.city;
+	ALTER SEQUENCE app.city_city_id_seq RESTART WITH 1;
+
+	INSERT INTO app.neighborhood
+	(
+		neighborhood_name,
+		neighborhood_name_ascii,
+		longitude,
+		latitude,
+		city_id,
+		created_by,
+		modified_by
+	)
+	SELECT DISTINCT
+			 z.neighborhood
+			,unaccent(z.neighborhood)
+			,AVG(NULLIF(TRIM(z.longitude), '')::double precision) AS longitude
+			,AVG(NULLIF(TRIM(z.latitude), '')::double precision) AS latitude
+			,ci.city_id
+			,0
+			,0
+	
+			
+		FROM imp.zip_info z
+			JOIN app.city ci
+				ON ci.city_name = z.city_name
+			JOIN App.State s
+				ON s.state_uf = TRIM(z.state_abbrev)
+				AND s.state_id = ci.state_id
+		
+		GROUP BY 
+			 ci.city_id
+			,z.neighborhood;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
 
 
 
