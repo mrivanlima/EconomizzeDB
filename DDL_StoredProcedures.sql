@@ -675,6 +675,66 @@ END;
 $$
 LANGUAGE plpgsql;
 
+CREATE OR REPLACE PROCEDURE app.usp_api_state_update_by_id(
+    IN p_state_name VARCHAR(20),
+    IN p_state_UF CHAR(2),
+	IN p_state_id SMALLINT,
+    IN p_longitude NUMERIC(12,9) DEFAULT NULL,
+    IN p_latitude NUMERIC(12,9) DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    stored_procedure_name VARCHAR := 'usp_api_state_update_by_id';
+    error_message VARCHAR;
+    warning_message VARCHAR;
+	l_context TEXT;
+BEGIN
+    -- Trim the state name
+    p_state_name := TRIM(p_state_name);
+
+    -- Check if the state exists
+    IF NOT EXISTS (SELECT 1 FROM app.state WHERE state_id = p_state_id) THEN
+        error_message := CONCAT(p_state_id, ' not found!');
+        RAISE EXCEPTION USING MESSAGE = error_message, ERRCODE = '50005';
+    END IF;
+
+    -- Begin transaction
+    BEGIN
+        -- Update the state record
+        UPDATE app.state
+        SET state_name = TRIM(p_state_name),
+            state_uf = TRIM(p_state_uf),
+            state_name_ascii = unaccent(TRIM(p_state_name)),
+            longitude = p_longitude,
+            latitude = p_latitude
+        WHERE state_id = p_state_id;
+
+        -- Notify successful update
+        RAISE NOTICE '% updated successfully!', p_state_name;
+        EXCEPTION
+                WHEN OTHERS THEN
+                    p_error := TRUE;
+                    GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
+                    INSERT INTO app.error_log 
+                    (
+                        error_message, 
+                        error_code, 
+                        error_line
+                    )
+                    VALUES 
+                    (
+                        SQLERRM, 
+                        SQLSTATE, 
+                        l_context
+                    );
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
 
 
 
