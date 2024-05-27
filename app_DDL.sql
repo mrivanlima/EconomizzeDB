@@ -71,8 +71,8 @@ drop table if exists app.street;
 create table app.street
 (
 	street_id serial,
-	street_name varchar(50) not null,
-	street_name_ascii varchar(50) not null,
+	street_name varchar(150) not null,
+	street_name_ascii varchar(150) not null,
 	zipcode char(8),
 	longitude double precision null,
 	latitude  double precision null,
