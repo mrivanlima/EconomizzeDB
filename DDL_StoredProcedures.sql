@@ -132,6 +132,15 @@ DECLARE
 BEGIN
     BEGIN
         p_username := TRIM(p_username);
+
+        SELECT user_id INTO p_out_user_id
+        FROM app.user_login
+        WHERE username = p_username; 
+
+        IF p_out_user_id IS NOT NULL THEN
+            RAISE NOTICE 'Email encontrado!';
+            RETURN;
+        END IF;
         -- Insert the new user login record into the app.user_login table
         INSERT INTO app.user_login (
             user_id,
