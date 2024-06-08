@@ -230,7 +230,7 @@ BEGIN
     );
 
     IF NOT p_error THEN
-        CALL app.usp_user_login_create
+        CALL app.usp_api_user_login_create
         (
             p_user_id := v_out_user_id,
             p_username := p_username,
