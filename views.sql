@@ -3,11 +3,8 @@ SELECT s.street_id,
 	   s.street_name,
        s.street_name_ascii,
 	   s.zipcode,
-       n.neighborhood_id,
        n.neighborhood_name,
-       c.city_id,
        c.city_name,
-       st.state_id,
        st.state_name
 	   
 FROM app.street s

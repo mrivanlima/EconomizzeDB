@@ -111,7 +111,7 @@ $$ LANGUAGE plpgsql;
 --Create procedure to add new user login
 -----------------------------------------------------------------
 
-CREATE OR REPLACE PROCEDURE app.usp_user_login_create(
+CREATE OR REPLACE PROCEDURE app.usp_api_user_login_create(
     IN p_user_id INTEGER,
     IN p_username VARCHAR(100),
     IN p_password_hash VARCHAR(100),
@@ -192,7 +192,7 @@ $$ LANGUAGE plpgsql;
 --Create procedure to set up user
 -----------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE app.usp_api_user_setup(
-    OUT p_out_user_id INTEGER,
+    OUT v_out_user_id INTEGER,
     IN p_user_first_name VARCHAR(100),
     IN p_user_email VARCHAR(250),
     IN p_username VARCHAR(100),
@@ -232,7 +232,7 @@ BEGIN
     IF NOT p_error THEN
         CALL app.usp_user_login_create
         (
-            p_user_id := p_out_user_id,
+            p_user_id := v_out_user_id,
             p_username := p_username,
             p_password_hash := p_password_hash,
             p_password_salt := p_password_salt,
@@ -918,6 +918,124 @@ INSERT INTO app.street
 	GROUP BY n.neighborhood_id,
 		     z.details,
 		     z.zip_code;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_address_create(
+    OUT p_out_address_id INTEGER,
+    IN p_street_id INTEGER,
+    IN p_complement VARCHAR(200),
+    IN p_complement_ascii VARCHAR(200),
+	IN p_created_by INTEGER,
+    IN p_modified_by INTEGER,
+    IN p_longitude DOUBLE PRECISION DEFAULT NULL,
+    IN p_latitude DOUBLE PRECISION DEFAULT NULL,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    l_context TEXT;
+    l_error_line TEXT;
+BEGIN
+    p_complement := TRIM(p_complement);
+    p_complement_ascii := unnacent(TRIM(p_complement_ascii));
+
+    BEGIN
+        -- Insert new address
+        INSERT INTO app.address
+        (
+            street_id,
+            complement,
+            complement_ascii,
+            longitude,
+            latitude,
+            created_by,
+            modified_by
+        )
+        VALUES
+        (
+            p_street_id,
+            p_complement,
+            p_complement_ascii,
+            p_longitude,
+            p_latitude,
+            p_created_by,
+            p_modified_by
+        ) RETURNING address_id INTO p_out_address_id;
+
+    EXCEPTION
+    WHEN OTHERS THEN
+        p_error := TRUE;
+        GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT, l_error_line = PG_EXCEPTION_DETAIL;
+        INSERT INTO app.error_log
+        (
+            error_message,
+            error_code,
+            error_line
+        )
+        VALUES
+        (
+            SQLERRM,
+            SQLSTATE,
+            l_error_line
+        );
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE app.usp_api_drugstore_create(
+    OUT p_out_drugstore_id INTEGER,
+    IN p_drugstore_name VARCHAR(200),
+    IN p_drugstore_name_ascii VARCHAR(200),
+    IN p_address_id INTEGER,
+    IN p_created_by INTEGER,
+    IN p_modified_by INTEGER,
+    INOUT p_error BOOLEAN DEFAULT FALSE
+)
+AS $$
+DECLARE
+    l_context TEXT;
+    l_error_line TEXT;
+BEGIN
+    p_drugstore_name := TRIM(p_drugstore_name);
+    p_drugstore_name_ascii := unnacent(TRIM(p_drugstore_name_ascii));
+
+    BEGIN
+        -- Insert new drugstore
+        INSERT INTO app.drugstore
+        (
+            drugstore_name,
+            dugrstore_name_ascii,
+            address_id,
+            created_by,
+            modified_by
+        )
+        VALUES
+        (
+            p_drugstore_name,
+            p_drugstore_name_ascii,
+            p_address_id,
+            p_created_by,
+            p_modified_by
+        ) RETURNING drugstore_id INTO p_out_drugstore_id;
+
+    EXCEPTION
+    WHEN OTHERS THEN
+        p_error := TRUE;
+        GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT, l_error_line = PG_EXCEPTION_DETAIL;
+        INSERT INTO app.error_log
+        (
+            error_message,
+            error_code,
+            error_line
+        )
+        VALUES
+        (
+            SQLERRM,
+            SQLSTATE,
+            l_error_line
+        );
+    END;
 END;
 $$ LANGUAGE plpgsql;
 
