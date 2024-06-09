@@ -1,6 +1,7 @@
 -----------------------------------------------------------------
 --Create procedure to drop all foreign keys
 -----------------------------------------------------------------
+DROP PROCEDURE IF EXISTS app.drop_foreign_keys;
 CREATE OR REPLACE PROCEDURE app.drop_foreign_keys()
 AS $$
 DECLARE
@@ -25,8 +26,10 @@ $$ LANGUAGE plpgsql;
 -----------------------------------------------------------------
 --Create procedure to add new user 
 -----------------------------------------------------------------
+DROP PROCEDURE IF EXISTS app.usp_api_user_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_user_create(
     OUT p_out_user_id INTEGER,
+	OUT p_out_message VARCHAR(100),
     IN p_user_first_name VARCHAR(100),
     IN p_user_email VARCHAR(250),
     IN p_user_middle_name VARCHAR(100) DEFAULT NULL,
@@ -40,6 +43,8 @@ AS $$
 DECLARE
     l_context TEXT;
     l_error_line TEXT;
+    L_procedure_name TEXT := 'usp_api_user_create';
+	l_is_match BOOLEAN := p_cpf ~ '^([-\.\s]?(\d{3})){3}[-\.\s]?(\d{2})$';
 BEGIN
     p_user_first_name := TRIM(p_user_first_name);
     p_user_middle_name := TRIM(p_user_middle_name);
@@ -55,13 +60,14 @@ BEGIN
         WHERE user_email = p_user_email; 
 
         IF p_out_user_id IS NOT NULL THEN
-            RAISE NOTICE 'Usuario encontrado!';
-            RETURN;
+            p_out_message :=  'Email ja cadastrado!';
+			RAISE EXCEPTION USING MESSAGE = p_out_message;
         END IF;
 
         -- Check CPF length
-        IF p_cpf IS NOT NULL AND LENGTH(p_cpf) < 11 THEN
-            RAISE EXCEPTION 'CPF deve ser de 11 caracteres.';
+        IF p_cpf IS NOT NULL AND l_is_match THEN
+            p_out_message := 'CPF invalido!';
+            RAISE EXCEPTION USING MESSAGE = p_out_message;
         END IF;
 
         -- Insert new user
@@ -110,9 +116,10 @@ $$ LANGUAGE plpgsql;
 -----------------------------------------------------------------
 --Create procedure to add new user login
 -----------------------------------------------------------------
-
+DROP PROCEDURE IF EXISTS app.usp_api_user_login_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_user_login_create(
     IN p_user_id INTEGER,
+	OUT p_out_message VARCHAR(100),
     IN p_username VARCHAR(100),
     IN p_password_hash VARCHAR(100),
     IN p_password_salt VARCHAR(100),
@@ -133,14 +140,11 @@ BEGIN
     BEGIN
         p_username := TRIM(p_username);
 
-        SELECT user_id INTO p_out_user_id
-        FROM app.user_login
-        WHERE username = p_username; 
+		IF EXISTS (SELECT 1 FROM app.user_login WHERE username = p_username) THEN
+	        p_out_message := 'Usuario encontrado!';
+	        RAISE EXCEPTION USING MESSAGE = p_out_message;
+    	END IF;
 
-        IF p_out_user_id IS NOT NULL THEN
-            RAISE NOTICE 'Email encontrado!';
-            RETURN;
-        END IF;
         -- Insert the new user login record into the app.user_login table
         INSERT INTO app.user_login (
             user_id,
@@ -200,6 +204,7 @@ $$ LANGUAGE plpgsql;
 -----------------------------------------------------------------
 --Create procedure to set up user
 -----------------------------------------------------------------
+DROP PROCEDURE IF EXISTS app.usp_api_user_setup;
 CREATE OR REPLACE PROCEDURE app.usp_api_user_setup(
     OUT v_out_user_id INTEGER,
     IN p_user_first_name VARCHAR(100),
@@ -260,6 +265,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_state_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_state_create(
     OUT p_out_state_id SMALLINT,
     IN p_state_name VARCHAR(50),
@@ -323,6 +329,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_city_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_city_create(
     OUT p_out_city_id INTEGER,
     IN p_city_name VARCHAR(50),
@@ -386,6 +393,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_neighborhood_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_neighborhood_create(
     OUT p_out_neighborhood_id INTEGER,
     IN p_neighborhood_name VARCHAR(50),
@@ -449,6 +457,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_street_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_street_create(
     OUT p_out_street_id INTEGER,
     IN p_street_name VARCHAR(50),
@@ -515,6 +524,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_address_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_address_create(
     OUT p_out_address_id INTEGER,
     IN p_street_id INTEGER,
@@ -578,6 +588,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_address_type_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_address_type_create(
     OUT p_out_address_type_id INTEGER,
     IN p_address_type_name VARCHAR(20),
@@ -632,6 +643,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_user_address_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_user_address_create(
     IN p_user_id INTEGER,
     IN p_address_id INTEGER,
@@ -684,6 +696,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_state_update_by_id;
 CREATE OR REPLACE PROCEDURE app.usp_api_state_update_by_id(
     IN p_state_id INTEGER,
     IN p_state_name VARCHAR,
@@ -750,6 +763,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_state_import;
 CREATE OR REPLACE PROCEDURE app.usp_state_import()
 AS $$	
 BEGIN	
@@ -815,6 +829,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+DROP PROCEDURE IF EXISTS app.usp_city_import;
 CREATE OR REPLACE PROCEDURE app.usp_city_import()
 AS $$	
 BEGIN
@@ -852,6 +868,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_neighborhood_import;
 CREATE OR REPLACE PROCEDURE app.usp_neighborhood_import()
 AS $$	
 BEGIN
@@ -892,6 +909,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_street_import;
 CREATE OR REPLACE PROCEDURE app.usp_street_import()
 AS $$	
 BEGIN
@@ -930,6 +948,7 @@ INSERT INTO app.street
 END;
 $$ LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_address_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_address_create(
     OUT p_out_address_id INTEGER,
     IN p_street_id INTEGER,
@@ -992,6 +1011,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP PROCEDURE IF EXISTS app.usp_api_drugstore_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_drugstore_create(
     OUT p_out_drugstore_id INTEGER,
     IN p_drugstore_name VARCHAR(200),
@@ -1049,7 +1069,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-
+DROP PROCEDURE IF EXISTS app.usp_seed;
 CREATE OR REPLACE PROCEDURE app.usp_seed()
 AS $$	
 BEGIN
@@ -1059,13 +1079,3 @@ BEGIN
 	CALL app.usp_street_import();
 END;
 $$ LANGUAGE plpgsql;
-
-
-
-
-
-
-
-
-
-
