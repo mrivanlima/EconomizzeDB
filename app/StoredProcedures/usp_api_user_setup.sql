@@ -10,6 +10,7 @@ CREATE OR REPLACE PROCEDURE app.usp_api_user_setup(
 	IN p_username VARCHAR(100),
     IN p_password_hash VARCHAR(100),
     IN p_password_salt VARCHAR(100),
+	IN p_user_unique_id uuid,
     IN p_user_middle_name VARCHAR(100) DEFAULT NULL,
     IN p_user_last_name VARCHAR(100) DEFAULT NULL,
     IN p_cpf CHAR(11) DEFAULT NULL,
@@ -53,6 +54,7 @@ BEGIN
 	        p_user_last_name := p_user_last_name,
 	        p_cpf := p_cpf,
 	        p_rg := p_rg,
+			p_user_unique_id := p_user_unique_id,
 	        p_date_of_birth := p_date_of_birth,
 	        p_error := p_error
 	    );

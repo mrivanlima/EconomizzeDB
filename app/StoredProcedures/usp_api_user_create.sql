@@ -7,6 +7,7 @@ CREATE OR REPLACE PROCEDURE app.usp_api_user_create(
 	OUT p_out_message VARCHAR(100),
     IN p_user_first_name VARCHAR(100),
     IN p_user_email VARCHAR(250),
+    IN p_user_unique_id UUID,
     IN p_user_middle_name VARCHAR(100) DEFAULT NULL,
     IN p_user_last_name VARCHAR(100) DEFAULT NULL,
     IN p_cpf CHAR(11) DEFAULT NULL,
@@ -54,6 +55,7 @@ BEGIN
             user_email,
             cpf,
             rg,
+            user_unique_id,
             date_of_birth
         ) 
         VALUES 
@@ -64,6 +66,7 @@ BEGIN
             p_user_email,
             p_cpf,
             p_rg,
+            p_user_unique_id,
             p_date_of_birth
         ) RETURNING user_id INTO p_out_user_id;  
 

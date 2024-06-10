@@ -8,7 +8,7 @@ create table app.user
 	cpf char(11) null,
 	rg  varchar(100) null,
 	date_of_birth date null,
-	user_unique_id UUID,  
+	user_unique_id uuid,  
 	created_by integer null,
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer null,
