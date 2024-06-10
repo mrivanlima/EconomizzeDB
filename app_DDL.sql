@@ -1,10 +1,11 @@
 create schema if not exists app;
 create schema if not exists imp;
 CREATE EXTENSION IF NOT EXISTS unaccent;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CALL app.drop_foreign_keys();
 
-drop table if exists app.error_log;
+drop table if exists app.error_log cascade;
 
 CREATE TABLE app.error_log (
     error_log_id bigserial,
@@ -15,7 +16,7 @@ CREATE TABLE app.error_log (
 	constraint pk_error_log primary key (error_log_id)
 );
 
-drop table if exists app.state;
+drop table if exists app.state cascade;
 create table app.state
 (
 	state_id smallserial,
@@ -32,7 +33,7 @@ create table app.state
 );
 
 
-drop table if exists app.city;
+drop table if exists app.city cascade;
 create table app.city
 (
 	city_id smallserial,
@@ -50,7 +51,7 @@ create table app.city
 	constraint uk_city_name unique (city_name, state_id)
 );
 
-drop table if exists app.neighborhood;
+drop table if exists app.neighborhood cascade;
 create table app.neighborhood
 (
 	neighborhood_id serial,
@@ -67,7 +68,7 @@ create table app.neighborhood
 	constraint fk_neighborhood_city foreign key (city_id) references app.city(city_id)
 );
 
-drop table if exists app.street;
+drop table if exists app.street cascade;
 create table app.street
 (
 	street_id serial,
@@ -85,7 +86,7 @@ create table app.street
 	constraint fk_street_neighborhood foreign key (neighborhood_id) references app.neighborhood(neighborhood_id)
 );
 
-drop table if exists app.address;
+drop table if exists app.address cascade;
 create table app.address
 (
 	address_id serial,
@@ -102,7 +103,7 @@ create table app.address
 	constraint fk_address_street foreign key (street_id) references app.street(street_id)
 );
 
-drop table if exists app.address_type;
+drop table if exists app.address_type cascade;
 create table app.address_type
 (
 	address_type_id smallserial,
@@ -115,7 +116,7 @@ create table app.address_type
 	constraint pk_address_type primary key (address_type_id)
 );
 
-drop table if exists app.user;
+drop table if exists app.user cascade;
 create table app.user
 (
 	user_id serial,
@@ -126,6 +127,7 @@ create table app.user
 	cpf char(11) null,
 	rg  varchar(100) null,
 	date_of_birth date null,
+	user_unique_id UUID DEFAULT gen_random_uuid(),  
 	created_by integer null,
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer null,
@@ -134,7 +136,7 @@ create table app.user
 	constraint uk_user_email unique (user_email)
 );
 
-drop table if exists app.user_login;
+drop table if exists app.user_login cascade;
 create table app.user_login
 (
 	user_id integer,
@@ -155,7 +157,23 @@ create table app.user_login
 	constraint fk_user_login_user foreign key (user_id) references app.user(user_id)
 );
 
-drop table if exists app.user_address;
+drop table if exists app.user_token cascade;
+create table app.user_token
+(
+	user_id integer,
+	token varchar(500) not null,
+	token_start_date timestamp,
+	token_expiration_date timestamp,
+	is_active boolean,
+	created_by integer null,
+	created_on 	timestamp with time zone default current_timestamp,
+	modified_by integer null,
+	modified_on timestamp with time zone default current_timestamp,
+	constraint pk_user_token primary key (user_id),
+	constraint fk_user_token_user foreign key (user_id) references app.user(user_id)
+);
+
+drop table if exists app.user_address cascade;
 create table app.user_address
 (
 	user_id integer,
@@ -171,7 +189,7 @@ create table app.user_address
 	constraint fk_user_address_address_type foreign key (address_type_id) references app.address_type(address_type_id)
 );
 
-drop table if exists app.drugstore;
+drop table if exists app.drugstore cascade;
 create table app.drugstore
 (
 	drugstore_id serial,
@@ -186,7 +204,7 @@ create table app.drugstore
 	constraint fk_drugstore_address foreign key (address_id) references app.address(address_id)
 );
 
-drop table if exists app.drugstore_neighborhood_subscription;
+drop table if exists app.drugstore_neighborhood_subscription cascade;
 create table app.drugstore_neighborhood_subscription
 (
 	drugstore_id integer,
@@ -201,7 +219,7 @@ create table app.drugstore_neighborhood_subscription
 	constraint fk_drugstore_neighborhood_subscription_drugstore foreign key (drugstore_id) references app.drugstore(drugstore_id)
 );
 
-drop table if exists app.quote;
+drop table if exists app.quote cascade;
 create table app.quote
 (
 	quote_id bigserial,
@@ -218,7 +236,7 @@ create table app.quote
 	constraint fk_quote_user foreign key (user_id) references app.user(user_id)
 );
 
-drop table if exists app.product;
+drop table if exists app.product cascade;
 create table app.product
 (
 	product_id serial,
@@ -233,7 +251,7 @@ create table app.product
 	constraint pk_product primary key (product_id)
 );
 
-drop table if exists app.quote_product;
+drop table if exists app.quote_product cascade;
 create table app.quote_product
 (
 	quote_id   bigint,
@@ -248,7 +266,7 @@ create table app.quote_product
 	constraint fk_quote_product_product foreign key (product_id) references app.product(product_id)
 );
 
-drop table if exists app.role;
+drop table if exists app.role cascade;
 create table app.role
 (
 	role_id   smallserial,
@@ -261,7 +279,7 @@ create table app.role
 	constraint pk_role primary key (role_id)
 );
 
-drop table if exists app.user_role;
+drop table if exists app.user_role cascade;
 create table app.user_role
 (
 	role_id   smallint,
@@ -278,7 +296,7 @@ create table app.user_role
 	constraint fk_user_role_user foreign key (user_id) references app.user(user_id)
 );
 
-drop table if exists app.group;
+drop table if exists app.group cascade;
 create table app.group
 (
 	group_id   smallserial,
@@ -291,7 +309,7 @@ create table app.group
 	constraint pk_group primary key (group_id)
 );
 
-drop table if exists app.user_group;
+drop table if exists app.user_group cascade;
 create table app.user_group
 (
 	group_id   smallint,
@@ -310,7 +328,7 @@ create table app.user_group
 
 
 --This is for Generic, Similar or Original only
-drop table if exists app.product_version;
+drop table if exists app.product_version cascade;
 create table app.product_version
 (
 	product_version_id   smallint,
@@ -323,7 +341,7 @@ create table app.product_version
 	constraint pk_product_version primary key (product_version_id)
 );
 
-drop table if exists app.quote_response;
+drop table if exists app.quote_response cascade;
 create table app.quote_response
 (
 	quote_id   bigint,
@@ -343,7 +361,7 @@ create table app.quote_response
 	constraint fk_quote_response_product_version foreign key (product_version_id) references app.product_version(product_version_id)
 );
 
-drop table if exists app.quote_product_response;
+drop table if exists app.quote_product_response cascade;
 create table app.quote_product_response
 (
 	quote_id   bigint,
@@ -365,7 +383,7 @@ create table app.quote_product_response
 	constraint fk_quote_product_response_product_version foreign key (product_version_id) references app.product_version(product_version_id)
 );
 
-drop table if exists app.contact_type;
+drop table if exists app.contact_type cascade;
 create table app.contact_type
 (
 	contact_type_id   smallserial,

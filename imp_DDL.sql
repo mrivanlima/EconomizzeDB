@@ -1,4 +1,3 @@
-drop table if exists imp.zip_info;
 create table imp.zip_info (
     zip_id serial,
     city_name text,
