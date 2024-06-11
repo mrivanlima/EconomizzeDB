@@ -1,13 +1,14 @@
 DROP PROCEDURE IF EXISTS app.usp_api_address_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_address_create(
     OUT p_out_address_id INTEGER,
+    OUT p_out_message VARCHAR(100),
     IN p_street_id INTEGER,
     IN p_complement VARCHAR(200),
     IN p_longitude DOUBLE PRECISION DEFAULT NULL,
     IN p_latitude DOUBLE PRECISION DEFAULT NULL,
     IN p_created_by INTEGER DEFAULT NULL,
     IN p_modified_by INTEGER DEFAULT NULL,
-    INOUT p_error BOOLEAN DEFAULT FALSE
+    INOUT p_error BOOLEAN DEFAULT FALSE,
 )
 AS $$
 DECLARE
@@ -44,6 +45,7 @@ BEGIN
     EXCEPTION
         WHEN OTHERS THEN
             p_error := TRUE;
+            p_out_message := 'Algo deu errado, tente novamente!'
             GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
             INSERT INTO app.error_log 
             (
