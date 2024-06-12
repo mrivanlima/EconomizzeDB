@@ -1,3 +1,5 @@
+
+--What type of address? home, work, something else.
 create table app.address_type
 (
 	address_type_id smallserial,

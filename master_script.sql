@@ -1,3 +1,8 @@
+\i 'C:/Development/EconomizzeDB/Config.sql'
+
+
+\c economizze
+
 \i 'C:/Development/EconomizzeDB/schemas.sql'
 \i 'C:/Development/EconomizzeDB/extensions.sql'
 \i 'C:/Development/EconomizzeDB/DropTable.sql'

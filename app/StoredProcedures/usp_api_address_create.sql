@@ -8,7 +8,7 @@ CREATE OR REPLACE PROCEDURE app.usp_api_address_create(
     IN p_latitude DOUBLE PRECISION DEFAULT NULL,
     IN p_created_by INTEGER DEFAULT NULL,
     IN p_modified_by INTEGER DEFAULT NULL,
-    INOUT p_error BOOLEAN DEFAULT FALSE,
+    INOUT p_error BOOLEAN DEFAULT FALSE
 )
 AS $$
 DECLARE
