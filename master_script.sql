@@ -36,6 +36,7 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_response.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_product_response.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/contact_type.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/prescription.sql'
 
 
 --Add app functions
