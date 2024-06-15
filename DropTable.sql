@@ -22,3 +22,7 @@ drop table if exists app.product_version cascade;
 drop table if exists app.quote_response cascade;
 drop table if exists app.quote_product_response cascade;
 drop table if exists app.contact_type cascade;
+drop table if exists app.profession cascade;
+drop table if exists app.facility cascade;
+drop table if exists app.professional cascade;
+drop table if exists app.prescription cascade;

@@ -45,7 +45,7 @@ BEGIN
     EXCEPTION
         WHEN OTHERS THEN
             p_error := TRUE;
-            p_out_message := 'Algo deu errado, tente novamente!'
+            p_out_message := 'Algo deu errado, tente novamente!';
             GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
             INSERT INTO app.error_log 
             (

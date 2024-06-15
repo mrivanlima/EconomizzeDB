@@ -12,6 +12,8 @@
 
 
 --Add app tables
+\i 'C:/Development/EconomizzeDB/app/Tables/profession.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/professional.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/error_log.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/state.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/city.sql'
@@ -19,6 +21,7 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/street.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/address.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/address_type.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/facility.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_login.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_token.sql'
@@ -74,3 +77,6 @@
 --Add Indexes
 \i 'C:/Development/EconomizzeDB/app/Indexes/idx_street_zipcode.sql'
 \i 'C:/Development/EconomizzeDB/app/Indexes/ix_userlogin_username.sql'
+
+
+\c postgres
