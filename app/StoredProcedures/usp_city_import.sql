@@ -3,8 +3,8 @@ CREATE OR REPLACE PROCEDURE app.usp_city_import()
 AS $$	
 BEGIN
 
-	TRUNCATE TABLE app.city;
-	ALTER SEQUENCE app.city_city_id_seq RESTART WITH 1;
+	-- TRUNCATE TABLE app.city;
+	-- ALTER SEQUENCE app.city_city_id_seq RESTART WITH 1;
 	
 	INSERT INTO app.City
 	(

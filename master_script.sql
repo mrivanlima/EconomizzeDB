@@ -79,4 +79,6 @@
 \i 'C:/Development/EconomizzeDB/app/Indexes/ix_userlogin_username.sql'
 
 
+\i 'C:/Development/EconomizzeDB/seed.sql'
+
 \c postgres

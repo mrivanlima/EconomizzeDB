@@ -3,8 +3,8 @@ CREATE OR REPLACE PROCEDURE app.usp_neighborhood_import()
 AS $$	
 BEGIN
 
-	TRUNCATE TABLE app.neighborhood;
-	ALTER SEQUENCE app.neighborhood_neighborhood_id_seq RESTART WITH 1;
+	-- TRUNCATE TABLE app.neighborhood;
+	-- ALTER SEQUENCE app.neighborhood_neighborhood_id_seq RESTART WITH 1;
 
 	INSERT INTO app.neighborhood
 	(

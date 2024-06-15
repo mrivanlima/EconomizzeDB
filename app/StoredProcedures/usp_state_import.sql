@@ -2,8 +2,8 @@ DROP PROCEDURE IF EXISTS app.usp_state_import;
 CREATE OR REPLACE PROCEDURE app.usp_state_import()
 AS $$	
 BEGIN	
-	TRUNCATE TABLE app.state;
-	ALTER SEQUENCE app.state_state_id_seq RESTART WITH 1;
+	-- TRUNCATE TABLE app.state;
+	-- ALTER SEQUENCE app.state_state_id_seq RESTART WITH 1;
 	WITH states
 	AS(
 		SELECT DISTINCT
