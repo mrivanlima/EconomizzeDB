@@ -1,7 +1,20 @@
+
+\! chcp 65001
+\! set PGCLIENTENCODING=UTF8
+\! SET client_encoding = 'UTF8'
+
+
+
 \i 'C:/Development/EconomizzeDB/Config.sql'
 
+--For UTF character in the sql file
+-- \! chcp 65001
+-- \! set PGCLIENTENCODING=UTF8
+-----------------------------------
 
 \c economizze
+
+
 
 \i 'C:/Development/EconomizzeDB/schemas.sql'
 \i 'C:/Development/EconomizzeDB/extensions.sql'

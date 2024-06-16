@@ -1,5 +1,5 @@
 DROP PROCEDURE IF EXISTS app.usp_state_import;
-CREATE OR REPLACE PROCEDURE app.usp_state_import()
+CREATE PROCEDURE app.usp_state_import()
 AS $$	
 BEGIN	
 	-- TRUNCATE TABLE app.state;
