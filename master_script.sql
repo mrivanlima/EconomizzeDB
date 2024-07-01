@@ -58,6 +58,7 @@
 --Add app functions
 
 \i 'C:/Development/EconomizzeDB/app/Functions/drop_all_foreign_keys.sql'
+\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_group_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_state_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_state_read_by_id.sql'
 
