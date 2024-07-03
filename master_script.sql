@@ -55,6 +55,8 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/prescription.sql'
 
 
+
+
 --Add app functions
 
 \i 'C:/Development/EconomizzeDB/app/Functions/drop_all_foreign_keys.sql'
@@ -83,6 +85,16 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_seed.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_state_import.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_street_import.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_role_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_facility_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_prescription_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_version_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_create.sql'
+
+
+
+
+
 
 --Add Views
 
