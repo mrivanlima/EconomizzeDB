@@ -22,6 +22,8 @@
 
 --Add imp tables
 \i 'C:/Development/EconomizzeDB/imp/zip_info.sql'
+\i 'C:/Development/EconomizzeDB/imp/conformity.sql'
+\i 'C:/Development/EconomizzeDB/imp/presentation.sql'
 
 
 --Add app tables
