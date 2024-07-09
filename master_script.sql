@@ -63,6 +63,7 @@
 
 \i 'C:/Development/EconomizzeDB/app/Functions/drop_all_foreign_keys.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_group_read_all.sql'
+\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_profession_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_state_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_state_read_by_id.sql'
 
@@ -84,6 +85,7 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_setup.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_city_import.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_neighborhood_import.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_profession_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_seed.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_state_import.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_street_import.sql'
