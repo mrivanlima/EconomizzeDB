@@ -7,7 +7,7 @@ create table app.user_login
 	is_verified boolean default false,
 	is_active boolean default false,
 	is_locked boolean default false,
-	password_atempts smallint default 0,
+	password_attempts smallint default 0,
 	changed_initial_password boolean default false,
 	locked_time timestamp with time zone,
 	created_by integer null,

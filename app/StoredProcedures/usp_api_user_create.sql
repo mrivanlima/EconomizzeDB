@@ -20,7 +20,7 @@ DECLARE
     l_context TEXT;
     l_error_line TEXT;
     L_procedure_name TEXT := 'usp_api_user_create';
-	l_is_match BOOLEAN := p_cpf ~ '^([-\.\s]?(\d{3})){3}[-\.\s]?(\d{2})$';
+	-- l_is_match BOOLEAN := p_cpf ~ '^([-\.\s]?(\d{3})){3}[-\.\s]?(\d{2})$';
 BEGIN
     p_user_first_name := TRIM(p_user_first_name);
     p_user_middle_name := TRIM(p_user_middle_name);
@@ -41,10 +41,10 @@ BEGIN
         END IF;
 
         -- Check CPF length
-        IF p_cpf IS NOT NULL AND l_is_match THEN
-            p_out_message := 'CPF invalido!';
-            RAISE EXCEPTION USING MESSAGE = p_out_message;
-        END IF;
+        -- IF p_cpf IS NOT NULL AND l_is_match THEN
+        --     p_out_message := 'CPF invalido!';
+        --     RAISE EXCEPTION USING MESSAGE = p_out_message;
+        -- END IF;
 
         -- Insert new user
         INSERT INTO app.user
