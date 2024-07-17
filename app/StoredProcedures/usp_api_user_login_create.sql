@@ -3,16 +3,17 @@
 -----------------------------------------------------------------
 DROP PROCEDURE IF EXISTS app.usp_api_user_login_create;
 CREATE OR REPLACE PROCEDURE app.usp_api_user_login_create(
-    IN p_user_id INTEGER,
+    OUT p_out_user_id INTEGER,
 	OUT p_out_message VARCHAR(100),
+    IN p_user_unique_id uuid,
     IN p_username VARCHAR(100),
     IN p_password_hash VARCHAR(100),
     IN p_password_salt VARCHAR(100),
     IN p_is_verified BOOLEAN DEFAULT FALSE,
-    IN p_is_active BOOLEAN DEFAULT FALSE,
+    IN p_is_active BOOLEAN DEFAULT TRUE,
     IN p_is_locked BOOLEAN DEFAULT FALSE,
     IN p_password_attempts SMALLINT DEFAULT 0,
-    IN p_changed_initial_password BOOLEAN DEFAULT FALSE,
+    IN p_changed_initial_password BOOLEAN DEFAULT TRUE,
     IN p_locked_time TIMESTAMPTZ DEFAULT NULL,
     IN p_created_by INTEGER DEFAULT NULL,
     IN p_modified_by INTEGER DEFAULT NULL,
@@ -26,20 +27,22 @@ BEGIN
         p_username := TRIM(p_username);
 
 		IF EXISTS (SELECT 1 FROM app.user_login WHERE username = p_username) THEN
-	        p_out_message := 'Usuario encontrado!';
-	        RAISE EXCEPTION USING MESSAGE = p_out_message;
+	        p_out_message := 'Usuario ja registrado!';
+            p_error = TRUE;
+            RETURN;
+	        -- RAISE EXCEPTION USING MESSAGE = p_out_message;
     	END IF;
 
         -- Insert the new user login record into the app.user_login table
         INSERT INTO app.user_login (
-            user_id,
+            user_unique_id,
             username,
             password_hash,
             password_salt,
             is_verified,
             is_active,
             is_locked,
-            password_atempts,
+            password_attempts,
             changed_initial_password,
             locked_time,
             created_by,
@@ -49,7 +52,7 @@ BEGIN
         )
         VALUES 
         (
-            p_user_id,
+            p_user_unique_id,
             p_username,
             p_password_hash,
             p_password_salt,
@@ -63,7 +66,7 @@ BEGIN
             DEFAULT,  -- Use default for created_on
             p_modified_by,
             DEFAULT   -- Use default for modified_on
-        );
+        ) RETURNING user_id INTO p_out_user_id;
 
         EXCEPTION
         WHEN OTHERS THEN

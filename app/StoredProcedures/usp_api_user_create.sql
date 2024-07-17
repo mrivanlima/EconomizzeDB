@@ -68,7 +68,7 @@ BEGIN
             p_rg,
             p_user_unique_id,
             p_date_of_birth
-        ) RETURNING user_id INTO p_out_user_id;  
+        );  
 
         EXCEPTION
         WHEN OTHERS THEN

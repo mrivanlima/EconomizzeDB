@@ -2,6 +2,7 @@ DROP FUNCTION IF EXISTS app.usp_api_user_login_read_all();
 CREATE OR REPLACE FUNCTION app.usp_api_user_login_read_all()
 RETURNS TABLE (
     out_user_id INTEGER,
+    out_user_unique_id uuid,
     out_username VARCHAR(100),
     out_password_hash VARCHAR(100),
     out_password_salt VARCHAR(100),
@@ -19,6 +20,7 @@ RETURNS TABLE (
 BEGIN
     RETURN QUERY
     SELECT user_id,
+           user_unique_id,
            username,
            password_hash,
            password_salt,
