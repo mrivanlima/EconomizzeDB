@@ -1,20 +1,25 @@
-CREATE OR REPLACE FUNCTION app.usp_api_state_read_by_id(
+
+
+CREATE OR REPLACE FUNCTION app.usp_api_state_read_by_id
+(
     p_state_id SMALLINT
 )
-RETURNS TABLE (
-    out_state_name VARCHAR(50),
-    out_longitude DOUBLE PRECISION,
-    out_latitude DOUBLE PRECISION,
-    out_state_uf CHAR(2)
-) AS $$
+RETURNS app.state_record AS $$
+
+DECLARE 
+    state app.state_record;
 BEGIN
-    RETURN QUERY
-    SELECT state_name, 
+
+    SELECT state_id,
+           state_name, 
            longitude,
            latitude,
            state_uf
+    INTO state
     FROM app.state
     WHERE state_id = p_state_id
 	LIMIT 1;
+
+    RETURN state;
 END;
 $$ LANGUAGE plpgsql;
