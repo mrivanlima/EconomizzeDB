@@ -68,6 +68,7 @@
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_state_read_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_login_read_all.sql'
+\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_username_read.sql'
 
 --Add Stored Procedures
 
