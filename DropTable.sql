@@ -26,3 +26,8 @@ drop table if exists app.profession cascade;
 drop table if exists app.facility cascade;
 drop table if exists app.professional cascade;
 drop table if exists app.prescription cascade;
+
+
+
+DROP FUNCTION IF EXISTS app.usp_api_state_read_by_id;
+DROP FUNCTION IF EXISTS app.usp_api_state_read_all();
