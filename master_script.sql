@@ -20,6 +20,10 @@
 \i 'C:/Development/EconomizzeDB/extensions.sql'
 \i 'C:/Development/EconomizzeDB/DropTable.sql'
 
+--Add types
+\i 'C:/Development/EconomizzeDB/app/Types/user_login_record.sql'
+\i 'C:/Development/EconomizzeDB/app/Types/state_record.sql'
+
 --Add imp tables
 \i 'C:/Development/EconomizzeDB/imp/zip_info.sql'
 \i 'C:/Development/EconomizzeDB/imp/conformity.sql'
@@ -55,11 +59,6 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_product_response.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/contact_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/prescription.sql'
-
---Add types
-\i 'C:/Development/EconomizzeDB/app/Types/user_login_record.sql'
-\i 'C:/Development/EconomizzeDB/app/Types/state_record.sql'
-
 
 
 
