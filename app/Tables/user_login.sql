@@ -15,5 +15,6 @@ create table app.user_login
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer null,
 	modified_on timestamp with time zone default current_timestamp,
-	constraint pk_user_login primary key (user_id)
+	constraint pk_user_login primary key (user_id),
+	constraint uq_username unique (username)
 );

@@ -1,6 +1,6 @@
 
 
-DROP TYPE IF EXISTS app.user_login_record;
+DROP TYPE IF EXISTS app.user_login_record cascade;
 CREATE TYPE app.user_login_record AS 
 (
     user_id int,
