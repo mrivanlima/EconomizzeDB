@@ -17,5 +17,5 @@ BEGIN
     FROM app.user_login
     WHERE username = p_username
     AND is_active = TRUE;
-END;
+END; 
 $$ LANGUAGE plpgsql;
