@@ -72,6 +72,7 @@
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_login_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_login_read.sql'
+\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_role_read.sql'
 
 --Add Stored Procedures
 
@@ -88,6 +89,7 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_address_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_role_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_setup.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_city_import.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_neighborhood_import.sql'
