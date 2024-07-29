@@ -103,10 +103,9 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_version_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_create.sql'
 
-
-
-
-
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_by_uuid.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_by_username_for_lock.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_password.sql'
 
 --Add Views
 
