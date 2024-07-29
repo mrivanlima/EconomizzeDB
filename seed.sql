@@ -398,4 +398,4 @@ INSERT INTO app.user_role (
     current_timestamp  -- modified_on
 );
 
---CALL app.usp_seed();
+CALL app.usp_seed();
