@@ -398,4 +398,11 @@ INSERT INTO app.user_role (
     current_timestamp  -- modified_on
 );
 
-CALL app.usp_seed();
+insert into app.address_type 
+(address_type_name, address_type_name_ascii, created_by, modified_by) 
+VALUES
+('Residência', 'Residencia', 0, 0),
+('Trabalho', 'Trabalho', 0, 0),
+('Outro', 'Outro', 0, 0);
+
+--CALL app.usp_seed();
