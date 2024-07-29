@@ -4,6 +4,8 @@ chcp 65001
 # Set the PGCLIENTENCODING environment variable
 $env:PGCLIENTENCODING = "UTF8"
 
+
+
 # Path to psql.exe
 $psqlPath = "C:\Program Files\pgAdmin 4\runtime\psql.exe"
 
