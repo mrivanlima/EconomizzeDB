@@ -11,5 +11,7 @@ create table app.user_group
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_user_group primary key (group_id, user_id),
 	constraint fk_user_group_group foreign key (group_id) references app.group(group_id),
-	constraint fk_user_group_user foreign key (user_id) references app.user(user_id)
+	constraint fk_user_group_user foreign key (user_id) references app.user(user_id),
+	constraint fk_user_group_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_user_group_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

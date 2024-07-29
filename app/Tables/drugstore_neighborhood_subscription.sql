@@ -9,5 +9,7 @@ create table app.drugstore_neighborhood_subscription
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_drugstore_neighborhood_subscription primary key (drugstore_id, neighborhood_id),
 	constraint fk_drugstore_neighborhood_subscription_neighborhood foreign key (neighborhood_id) references app.neighborhood(neighborhood_id),
-	constraint fk_drugstore_neighborhood_subscription_drugstore foreign key (drugstore_id) references app.drugstore(drugstore_id)
+	constraint fk_drugstore_neighborhood_subscription_drugstore foreign key (drugstore_id) references app.drugstore(drugstore_id),
+	constraint fk_drugstore_neighborhood_subscription_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_drugstore_neighborhood_subscription_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

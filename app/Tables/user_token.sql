@@ -10,5 +10,7 @@ create table app.user_token
 	modified_by integer null,
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_user_token primary key (user_id),
-	constraint fk_user_token_user foreign key (user_id) references app.user(user_id)
+	constraint fk_user_token_user foreign key (user_id) references app.user(user_id),
+	constraint fk_user_token_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_user_token_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

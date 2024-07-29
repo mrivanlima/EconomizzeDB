@@ -9,5 +9,7 @@ create table app.quote_product
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_quote_product primary key (quote_id, product_id),
 	constraint fk_quote_product_quote foreign key (quote_id) references app.quote(quote_id),
-	constraint fk_quote_product_product foreign key (product_id) references app.product(product_id)
+	constraint fk_quote_product_product foreign key (product_id) references app.product(product_id),
+	constraint fk_quote_product_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_quote_product_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

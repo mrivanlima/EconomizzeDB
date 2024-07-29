@@ -7,5 +7,7 @@ create table app.role
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer not null,
 	modified_on timestamp with time zone default current_timestamp,
-	constraint pk_role primary key (role_id)
+	constraint pk_role primary key (role_id),
+	constraint fk_role_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_role_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

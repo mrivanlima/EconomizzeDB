@@ -12,5 +12,7 @@ create table app.city
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_city primary key (city_id),
 	constraint fk_city_state foreign key (state_id) references app.state(state_id),
-	constraint uk_city_name unique (city_name, state_id)
+	constraint uk_city_name unique (city_name, state_id),
+	constraint fk_city_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_city_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

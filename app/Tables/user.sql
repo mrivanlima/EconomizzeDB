@@ -14,5 +14,7 @@ create table app.user
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_user primary key (user_id),
 	constraint uk_user_email unique (user_email),
-	constraint fk_user_login_user foreign key (user_id) references app.user_login(user_id)
+	constraint fk_user_login_user foreign key (user_id) references app.user_login(user_id),
+	constraint fk_user_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_user_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

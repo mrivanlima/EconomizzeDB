@@ -1,3 +1,41 @@
+ALTER SEQUENCE app.user_login_user_id_seq MINVALUE 0;
+ALTER SEQUENCE app.user_login_user_id_seq RESTART WITH 0;
+INSERT INTO app.user_login (
+    user_unique_id, 
+    username, 
+    password_hash, 
+    password_salt, 
+    is_verified, 
+    is_active, 
+    is_locked, 
+    password_attempts, 
+    changed_initial_password, 
+    locked_time, 
+    created_by, 
+    created_on, 
+    modified_by, 
+    modified_on
+) VALUES (
+    uuid_generate_v4(),  -- Generate a new UUID
+    'System', 
+    'To be determined', 
+    'To be determined', 
+    true,  -- is_verified
+    true,  -- is_active
+    false,  -- is_locked
+    0,  -- password_attempts
+    true,  -- changed_initial_password
+    NULL,  -- locked_time
+    0,  -- created_by
+    current_timestamp,  -- created_on
+    0,  -- modified_by
+    current_timestamp  -- modified_on
+);
+
+
+
+
+
 INSERT INTO app.user_login (
     user_unique_id, 
     username, 
@@ -24,9 +62,9 @@ INSERT INTO app.user_login (
     0,  -- password_attempts
     true,  -- changed_initial_password
     NULL,  -- locked_time
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -56,9 +94,9 @@ INSERT INTO app.user_login (
     0,  -- password_attempts
     true,  -- changed_initial_password
     NULL,  -- locked_time
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -88,9 +126,9 @@ INSERT INTO app.user_login (
     0,  -- password_attempts
     true,  -- changed_initial_password
     NULL,  -- locked_time
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -120,9 +158,9 @@ INSERT INTO app.user_login (
     0,  -- password_attempts
     true,  -- changed_initial_password
     NULL,  -- locked_time
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -148,9 +186,9 @@ INSERT INTO app.user (
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -176,9 +214,9 @@ INSERT INTO app.user (
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -204,9 +242,9 @@ INSERT INTO app.user (
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -232,9 +270,9 @@ INSERT INTO app.user (
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -249,9 +287,9 @@ INSERT INTO app.role (
 ) VALUES (
     'Developer',
     'developer',
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -266,9 +304,9 @@ INSERT INTO app.role (
 ) VALUES (
     'Admin',
     'admin',
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -282,10 +320,10 @@ INSERT INTO app.role (
     modified_on
 ) VALUES (
     'QA',
-    'qa',
-    1,  -- created_by
+    'QA',
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -300,9 +338,9 @@ INSERT INTO app.role (
 ) VALUES (
     'UAT',
     'uat',
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -323,9 +361,9 @@ INSERT INTO app.user_role (
     true,  -- is_active
     '2024-07-01 00:00:00+00',  -- role_start_date
     NULL,  -- role_end_date
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -346,9 +384,9 @@ INSERT INTO app.user_role (
     true,  -- is_active
     '2024-07-01 00:00:00+00',  -- role_start_date
     NULL,  -- role_end_date
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -369,9 +407,9 @@ INSERT INTO app.user_role (
     true,  -- is_active
     '2024-07-01 00:00:00+00',  -- role_start_date
     NULL,  -- role_end_date
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -392,9 +430,9 @@ INSERT INTO app.user_role (
     true,  -- is_active
     '2024-07-01 00:00:00+00',  -- role_start_date
     NULL,  -- role_end_date
-    1,  -- created_by
+    0,  -- created_by
     current_timestamp,  -- created_on
-    1,  -- modified_by
+    0,  -- modified_by
     current_timestamp  -- modified_on
 );
 
@@ -404,5 +442,26 @@ VALUES
 ('Residência', 'Residencia', 0, 0),
 ('Trabalho', 'Trabalho', 0, 0),
 ('Outro', 'Outro', 0, 0);
+
+insert into app.contact_type 
+(contact_type_name, contact_type_name_ascii, created_by, modified_by)
+values
+('Email', 'Email', 0, 0),
+('Telefone', 'Telefone', 0, 0);
+
+
+insert into app.group (group_name, group_name_ascii, created_by, modified_by)
+values
+('Administrador', 'Administrador', 0, 0),
+('Desenvolvedor', 'Desenvolvedor', 0, 0),
+('Gerente', 'Gerente', 0, 0),
+('Farmacéutico', 'Farmaceutico', 0, 0);
+
+insert into app.product_version
+(product_version_name, product_version_ascii, created_by, modified_by)
+values
+('Genérico', 'Generico', 0, 0),
+('Similar', 'Similar', 0, 0),
+('Ético', ' Ético', 0, 0);
 
 --CALL app.usp_seed();

@@ -9,5 +9,7 @@ create table app.drugstore
 	modified_by integer not null,
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_drugstore primary key (drugstore_id),
-	constraint fk_drugstore_address foreign key (address_id) references app.address(address_id)
+	constraint fk_drugstore_address foreign key (address_id) references app.address(address_id),
+	constraint fk_drugstore_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_drugstore_modified_by foreign key (modified_by) references app.user_login(user_id)
 );

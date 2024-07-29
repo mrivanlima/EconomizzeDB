@@ -31,6 +31,7 @@
 
 
 --Add app tables
+\i 'C:/Development/EconomizzeDB/app/Tables/user_login.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/profession.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/professional.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/error_log.sql'
@@ -41,7 +42,6 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/address.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/address_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/facility.sql'
-\i 'C:/Development/EconomizzeDB/app/Tables/user_login.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_token.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_address.sql'
@@ -76,7 +76,11 @@
 
 --Add Stored Procedures
 
+
+
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/drop_foreign_keys.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_address_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_address_type_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_city_create.sql'
@@ -87,8 +91,6 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_state_update_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_street_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_address_create.sql'
-\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_create.sql'
-\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_role_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_setup.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_city_import.sql'

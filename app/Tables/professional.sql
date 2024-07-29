@@ -12,5 +12,7 @@ create table app.professional
 	modified_by integer not null,
 	modified_on timestamp with time zone default current_timestamp,
 	constraint pk_professional primary key (professional_id),
-    constraint fk_professional_profession foreign key (profession_id) references app.profession(profession_id)
+    constraint fk_professional_profession foreign key (profession_id) references app.profession(profession_id),
+    constraint fk_professional_created_by foreign key (created_by) references app.user_login(user_id),
+	constraint fk_professional_modified_by foreign key (modified_by) references app.user_login(user_id)
 )
