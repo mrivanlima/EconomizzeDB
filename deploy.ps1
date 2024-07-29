@@ -18,9 +18,10 @@ $dbPassword = "postgres"  # Replace with your actual password
 $sslMode = "prefer"
 $connectTimeout = "10"
 
+#Gitignore
+
 # Path to the SQL script
 $sqlScriptPath = "C:/Development/EconomizzeDB/master_script.sql"
-
 
 # Construct the connection string
 $connectionString = "host=$dbHost port=$dbPort dbname=$dbName user=$dbUser password=$dbPassword"
