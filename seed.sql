@@ -329,7 +329,7 @@ INSERT INTO app.role (
     modified_on
 ) VALUES (
     'UAT',
-    'uat',
+    'UAT',
     0,  -- created_by
     current_timestamp,  -- created_on
     0,  -- modified_by
@@ -455,5 +455,13 @@ values
 ('Genérico', 'Generico', 0, 0),
 ('Similar', 'Similar', 0, 0),
 ('Ético', ' Ético', 0, 0);
+
+insert into app.profession 
+(profession_name, profession_name_ascii, created_by, modified_by)
+values
+('Médico', 'Medico', 0, 0),
+('Dentista', 'Dentista', 0, 0),
+('Psicólogo', 'Psicologo', 0, 0),
+('Terapeuta', 'Terapeuta', 0, 0);
 
 --CALL app.usp_seed();
