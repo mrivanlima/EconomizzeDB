@@ -13,7 +13,6 @@ SELECT ul.username,
 	   u.user_first_name,
 	   u.user_middle_name,
 	   u.user_last_name,
-	   u.user_email,
 	   u.cpf,
 	   u.rg,
 	   u.date_of_birth

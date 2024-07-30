@@ -169,7 +169,6 @@ INSERT INTO app.user (
     user_first_name,
     user_middle_name,
     user_last_name,
-    user_email,
     cpf,
     rg,
     date_of_birth,
@@ -182,7 +181,6 @@ INSERT INTO app.user (
     'Test',
     'A',
     'Doe',
-    'test@example.com',
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
@@ -197,7 +195,6 @@ INSERT INTO app.user (
     user_first_name,
     user_middle_name,
     user_last_name,
-    user_email,
     cpf,
     rg,
     date_of_birth,
@@ -210,7 +207,6 @@ INSERT INTO app.user (
     'John',
     'A',
     'Doe',
-    'john.doe@example.com',
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
@@ -225,7 +221,6 @@ INSERT INTO app.user (
     user_first_name,
     user_middle_name,
     user_last_name,
-    user_email,
     cpf,
     rg,
     date_of_birth,
@@ -238,7 +233,6 @@ INSERT INTO app.user (
     'Jane',
     'A',
     'Doe',
-    'jane.doe@example.com',
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
@@ -253,7 +247,6 @@ INSERT INTO app.user (
     user_first_name,
     user_middle_name,
     user_last_name,
-    user_email,
     cpf,
     rg,
     date_of_birth,
@@ -266,7 +259,6 @@ INSERT INTO app.user (
     'Jane',
     'A',
     'Doe',
-    'janer.doe@example.com',
     '12345678901',  -- Example CPF
     'RG123456',     -- Example RG
     '1990-01-01',   -- Example date of birth
