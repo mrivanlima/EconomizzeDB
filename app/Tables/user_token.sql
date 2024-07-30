@@ -1,7 +1,7 @@
 create table app.user_token
 (
 	user_id integer,
-	token uuid default uuid_generate_v1(),
+	token uuid default uuid_generate_v4(),
 	token_start_date timestamp,
 	token_expiration_date timestamp,
 	is_active boolean,
