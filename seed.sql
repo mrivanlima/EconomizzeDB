@@ -53,9 +53,9 @@ INSERT INTO app.user_login (
     modified_on
 ) VALUES (
     uuid_generate_v4(),  -- Generate a new UUID
-    'example_username', 
-    'example_password_hash', 
-    'example_password_salt', 
+    'g@g.com', 
+    '123456', 
+    '123456', 
     true,  -- is_verified
     true,  -- is_active
     false,  -- is_locked
@@ -85,9 +85,9 @@ INSERT INTO app.user_login (
     modified_on
 ) VALUES (
     uuid_generate_v4(),  -- Generate a new UUID
-    'example_username2', 
-    'example_password_hash', 
-    'example_password_salt', 
+    'a@a.com', 
+    '123456', 
+    '123456',  
     true,  -- is_verified
     true,  -- is_active
     false,  -- is_locked
@@ -117,9 +117,9 @@ INSERT INTO app.user_login (
     modified_on
 ) VALUES (
     uuid_generate_v4(),  -- Generate a new UUID
-    'example_username3', 
-    'example_password_hash', 
-    'example_password_salt', 
+    'b@b.com', 
+    '123456', 
+    '123456', 
     true,  -- is_verified
     true,  -- is_active
     false,  -- is_locked
@@ -149,9 +149,9 @@ INSERT INTO app.user_login (
     modified_on
 ) VALUES (
     uuid_generate_v4(),  -- Generate a new UUID
-    'example_username4', 
-    'example_password_hash', 
-    'example_password_salt', 
+    'c@c.com', 
+    '123456', 
+    '123456',  
     true,  -- is_verified
     true,  -- is_active
     false,  -- is_locked
