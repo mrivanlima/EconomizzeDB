@@ -1,5 +1,5 @@
 
-DROP TYPE IF EXISTS app.state_record;
+DROP TYPE IF EXISTS app.state_record cascade;
 CREATE TYPE app.state_record AS 
 (
     state_id smallint,

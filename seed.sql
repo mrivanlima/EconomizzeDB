@@ -464,4 +464,4 @@ values
 ('Psicólogo', 'Psicologo', 0, 0),
 ('Terapeuta', 'Terapeuta', 0, 0);
 
---CALL app.usp_seed();
+CALL app.usp_seed();

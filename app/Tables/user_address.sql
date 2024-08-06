@@ -3,6 +3,7 @@ create table app.user_address
 	user_id integer,
 	address_id integer,
 	address_type_id smallint,
+	main_address	boolean default false,
 	created_by integer not null,
 	created_on 	timestamp with time zone default current_timestamp,
 	modified_by integer not null,
