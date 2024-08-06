@@ -23,6 +23,7 @@
 --Add types
 \i 'C:/Development/EconomizzeDB/app/Types/user_login_record.sql'
 \i 'C:/Development/EconomizzeDB/app/Types/state_record.sql'
+\i 'C:/Development/EconomizzeDB/app/Types/user_record.sql'
 
 --Add imp tables
 \i 'C:/Development/EconomizzeDB/imp/zip_info.sql'
@@ -73,6 +74,7 @@
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_login_read_all.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_login_read.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_role_read.sql'
+\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_read_by_id.sql'
 
 --Add Stored Procedures
 
