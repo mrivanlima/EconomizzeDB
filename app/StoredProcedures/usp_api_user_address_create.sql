@@ -51,9 +51,11 @@ BEGIN
             p_created_by,
             p_modified_by
         );
+        COMMIT;
 
         EXCEPTION
             WHEN OTHERS THEN
+                ROLLBACK;
                 p_error := TRUE;
                 GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
                 INSERT INTO app.error_log 
@@ -68,6 +70,7 @@ BEGIN
                     SQLSTATE, 
                     l_context
                 );
+                RAISE;
     END;
 END;
 $$
