@@ -51,7 +51,6 @@ BEGIN
             p_created_by,
             p_modified_by
         );
-        COMMIT;
 
         EXCEPTION
             WHEN OTHERS THEN

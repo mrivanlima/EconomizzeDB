@@ -41,11 +41,9 @@ BEGIN
             p_created_by,
             p_modified_by
         ) RETURNING address_id INTO p_out_address_id;
-        COMMIT;
 
     EXCEPTION
         WHEN OTHERS THEN
-            ROLLBACK;
             p_error := TRUE;
             p_out_message := 'Algo deu errado, tente novamente!';
             GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT;
