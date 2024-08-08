@@ -70,7 +70,7 @@ BEGIN
                     SQLSTATE, 
                     l_context
                 );
-                RAISE;
+            RAISE;
     END;
 END;
 $$
