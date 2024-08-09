@@ -52,7 +52,7 @@ INSERT INTO app.user_login (
     modified_by, 
     modified_on
 ) VALUES (
-    uuid_generate_v4(),  -- Generate a new UUID
+    '886e1d01-55b5-4797-b803-633a2083e665',  -- Generate a new UUID
     'g@g.com', 
     '123456', 
     '123456', 
