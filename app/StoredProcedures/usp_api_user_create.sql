@@ -6,6 +6,8 @@ CREATE OR REPLACE PROCEDURE app.usp_api_user_create(
     IN p_user_id INTEGER,
 	OUT p_out_message VARCHAR(100),
     IN p_user_first_name VARCHAR(100),
+    IN p_created_by INTEGER,
+    IN p_modified_by INTEGER,
     IN p_user_middle_name VARCHAR(100) DEFAULT NULL,
     IN p_user_last_name VARCHAR(100) DEFAULT NULL,
     IN p_phone_number VARCHAR(15) DEFAULT NULL,
@@ -24,7 +26,6 @@ BEGIN
     p_user_first_name := TRIM(p_user_first_name);
     p_user_middle_name := TRIM(p_user_middle_name);
     p_user_last_name := TRIM(p_user_last_name);
-    p_user_email := TRIM(p_user_email);
     p_phone_number := TRIM(p_phone_number);
     p_cpf := TRIM(p_cpf);
     p_rg := TRIM(p_rg);
@@ -41,7 +42,9 @@ BEGIN
             cpf,
             rg,
             phone_number,
-            date_of_birth
+            date_of_birth,
+            created_by,
+            modified_by
         ) 
         VALUES 
         (
@@ -52,7 +55,9 @@ BEGIN
             p_cpf,
             p_rg,
             p_phone_number,
-            p_date_of_birth
+            p_date_of_birth,
+            created_by,
+            modified_by
         );  
 
         EXCEPTION
