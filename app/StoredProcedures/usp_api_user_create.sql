@@ -56,8 +56,8 @@ BEGIN
             p_rg,
             p_phone_number,
             p_date_of_birth,
-            created_by,
-            modified_by
+            p_created_by,
+            p_modified_by
         );  
 
         EXCEPTION
