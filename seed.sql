@@ -464,4 +464,26 @@ values
 ('Psicólogo', 'Psicologo', 0, 0),
 ('Terapeuta', 'Terapeuta', 0, 0);
 
-CALL app.usp_seed();
+
+
+--CALL app.usp_seed();
+
+
+
+INSERT INTO app.state (
+    state_name,
+    state_name_ascii,
+    state_uf,
+    longitude,
+    latitude,
+    created_by,
+    modified_by
+) VALUES (
+    'Example State Name',     -- state_name
+    'example-state-name',     -- state_name_ascii
+    'EX',                     -- state_uf (must be a 2-character string)
+    -123.456,                 -- longitude (can be NULL)
+    78.9012,                  -- latitude (can be NULL)
+    0,                        -- created_by (must be a valid user_id in app.user_login)
+    0                         -- modified_by (must be a valid user_id in app.user_login)
+);
