@@ -13,7 +13,8 @@ BEGIN
            user_last_name,
            cpf,
            rg,
-           date_of_birth
+           date_of_birth,
+           phone_number
     FROM app.user
     WHERE user_id = p_user_id
 	LIMIT 1;

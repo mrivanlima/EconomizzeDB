@@ -7,5 +7,6 @@ CREATE TYPE app.user_record AS
     user_last_name varchar(100),
     cpf char(11),
     rg  varchar(100),
-    date_of_birth date
+    date_of_birth date,
+    phone_number VARCHAR(15)
 )  
