@@ -77,6 +77,8 @@
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_read_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_address_type_read_all.sql'
 
+
+
 --Add Stored Procedures
 
 
@@ -111,6 +113,8 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_by_uuid.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_by_username_for_lock.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_password.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_confirm_update.sql'
+
 
 --Add Views
 

@@ -17,7 +17,7 @@ $$ LANGUAGE plpgsql;
 DO $$
 BEGIN
    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'appuser') THEN
-      CREATE USER appuser WITH PASSWORD 'Molly102162';
+      CREATE USER appuser WITH PASSWORD 'password';
       GRANT ALL PRIVILEGES ON DATABASE Economizze TO appuser;   
    END IF;
 END
