@@ -58,6 +58,7 @@ BEGIN
 			0,
 			0
 	FROM states
+	WHERE state_uf = 'GO'
 	GROUP BY state_name,
 			 state_uf
 	ORDER BY 1;

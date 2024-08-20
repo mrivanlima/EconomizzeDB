@@ -5,6 +5,7 @@ CREATE OR REPLACE PROCEDURE app.usp_api_user_address_create(
     IN p_street_id INTEGER,
     IN p_complement VARCHAR(256),
     IN p_address_type_id SMALLINT,
+    OUT p_out_address_id INTEGER,
     IN p_longitude DOUBLE PRECISION DEFAULT NULL,
     IN p_latitude DOUBLE PRECISION DEFAULT NULL,
     IN p_main_address	BOOLEAN DEFAULT false, 
@@ -15,10 +16,21 @@ CREATE OR REPLACE PROCEDURE app.usp_api_user_address_create(
 AS $$
 DECLARE
     l_context TEXT;
-    p_out_address_id INTEGER;
 	p_out_message VARCHAR(100);
 BEGIN
     BEGIN
+
+        IF EXISTS (
+                    SELECT 1 
+                    FROM app.user_address 
+                    WHERE user_id = p_user_id
+                    AND address_type_id = p_address_type_id
+                    AND street_id = p_street_id
+                   ) THEN
+	        p_out_message := 'Usuario com esse endereco ja registrado!';
+            p_error := true;
+            RETURN;
+    	END IF;
         
         CALL app.usp_api_address_create
         (
