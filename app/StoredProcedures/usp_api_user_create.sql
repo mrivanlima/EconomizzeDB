@@ -32,6 +32,12 @@ BEGIN
    
     BEGIN
 
+        IF EXISTS (SELECT 1 FROM app.user WHERE user_id = p_user_id) THEN
+	        p_out_message := 'Usuario ja registrado!';
+            RETURN;
+    	END IF;
+
+
         -- Insert new user
         INSERT INTO app.user
         (
@@ -63,6 +69,7 @@ BEGIN
         EXCEPTION
         WHEN OTHERS THEN
             p_error := TRUE;
+            ROLLBACK;
             GET STACKED DIAGNOSTICS l_context = PG_EXCEPTION_CONTEXT, l_error_line = PG_EXCEPTION_DETAIL;
             INSERT INTO app.error_log 
             (

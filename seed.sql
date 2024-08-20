@@ -32,241 +32,237 @@ INSERT INTO app.user_login (
     current_timestamp  -- modified_on
 );
 
+-- INSERT INTO app.user_login (
+--     user_unique_id, 
+--     username, 
+--     password_hash, 
+--     password_salt, 
+--     is_verified, 
+--     is_active, 
+--     is_locked, 
+--     password_attempts, 
+--     changed_initial_password, 
+--     locked_time, 
+--     created_by, 
+--     created_on, 
+--     modified_by, 
+--     modified_on
+-- ) VALUES (
+--     '886e1d01-55b5-4797-b803-633a2083e665',  -- Generate a new UUID
+--     'g@g.com', 
+--     '123456', 
+--     '123456', 
+--     true,  -- is_verified
+--     true,  -- is_active
+--     false,  -- is_locked
+--     0,  -- password_attempts
+--     true,  -- changed_initial_password
+--     NULL,  -- locked_time
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
+-- INSERT INTO app.user_login (
+--     user_unique_id, 
+--     username, 
+--     password_hash, 
+--     password_salt, 
+--     is_verified, 
+--     is_active, 
+--     is_locked, 
+--     password_attempts, 
+--     changed_initial_password, 
+--     locked_time, 
+--     created_by, 
+--     created_on, 
+--     modified_by, 
+--     modified_on
+-- ) VALUES (
+--     uuid_generate_v4(),  -- Generate a new UUID
+--     'a@a.com', 
+--     '123456', 
+--     '123456',  
+--     true,  -- is_verified
+--     true,  -- is_active
+--     false,  -- is_locked
+--     0,  -- password_attempts
+--     true,  -- changed_initial_password
+--     NULL,  -- locked_time
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
+-- INSERT INTO app.user_login (
+--     user_unique_id, 
+--     username, 
+--     password_hash, 
+--     password_salt, 
+--     is_verified, 
+--     is_active, 
+--     is_locked, 
+--     password_attempts, 
+--     changed_initial_password, 
+--     locked_time, 
+--     created_by, 
+--     created_on, 
+--     modified_by, 
+--     modified_on
+-- ) VALUES (
+--     uuid_generate_v4(),  -- Generate a new UUID
+--     'b@b.com', 
+--     '123456', 
+--     '123456', 
+--     true,  -- is_verified
+--     true,  -- is_active
+--     false,  -- is_locked
+--     0,  -- password_attempts
+--     true,  -- changed_initial_password
+--     NULL,  -- locked_time
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
+-- INSERT INTO app.user_login (
+--     user_unique_id, 
+--     username, 
+--     password_hash, 
+--     password_salt, 
+--     is_verified, 
+--     is_active, 
+--     is_locked, 
+--     password_attempts, 
+--     changed_initial_password, 
+--     locked_time, 
+--     created_by, 
+--     created_on, 
+--     modified_by, 
+--     modified_on
+-- ) VALUES (
+--     uuid_generate_v4(),  -- Generate a new UUID
+--     'c@c.com', 
+--     '123456', 
+--     '123456',  
+--     true,  -- is_verified
+--     true,  -- is_active
+--     false,  -- is_locked
+--     0,  -- password_attempts
+--     true,  -- changed_initial_password
+--     NULL,  -- locked_time
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
-INSERT INTO app.user_login (
-    user_unique_id, 
-    username, 
-    password_hash, 
-    password_salt, 
-    is_verified, 
-    is_active, 
-    is_locked, 
-    password_attempts, 
-    changed_initial_password, 
-    locked_time, 
-    created_by, 
-    created_on, 
-    modified_by, 
-    modified_on
-) VALUES (
-    '886e1d01-55b5-4797-b803-633a2083e665',  -- Generate a new UUID
-    'g@g.com', 
-    '123456', 
-    '123456', 
-    true,  -- is_verified
-    true,  -- is_active
-    false,  -- is_locked
-    0,  -- password_attempts
-    true,  -- changed_initial_password
-    NULL,  -- locked_time
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- INSERT INTO app.user (
+--     user_id,
+--     user_first_name,
+--     user_middle_name,
+--     user_last_name,
+--     cpf,
+--     rg,
+--     date_of_birth,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     1,  -- Replace with the actual user_id obtained
+--     'Test',
+--     'A',
+--     'Doe',
+--     '12345678901',  -- Example CPF
+--     'RG123456',     -- Example RG
+--     '1990-01-01',   -- Example date of birth
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
-INSERT INTO app.user_login (
-    user_unique_id, 
-    username, 
-    password_hash, 
-    password_salt, 
-    is_verified, 
-    is_active, 
-    is_locked, 
-    password_attempts, 
-    changed_initial_password, 
-    locked_time, 
-    created_by, 
-    created_on, 
-    modified_by, 
-    modified_on
-) VALUES (
-    uuid_generate_v4(),  -- Generate a new UUID
-    'a@a.com', 
-    '123456', 
-    '123456',  
-    true,  -- is_verified
-    true,  -- is_active
-    false,  -- is_locked
-    0,  -- password_attempts
-    true,  -- changed_initial_password
-    NULL,  -- locked_time
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- INSERT INTO app.user (
+--     user_id,
+--     user_first_name,
+--     user_middle_name,
+--     user_last_name,
+--     cpf,
+--     rg,
+--     date_of_birth,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     2,  -- Replace with the actual user_id obtained
+--     'John',
+--     'A',
+--     'Doe',
+--     '12345678901',  -- Example CPF
+--     'RG123456',     -- Example RG
+--     '1990-01-01',   -- Example date of birth
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
-INSERT INTO app.user_login (
-    user_unique_id, 
-    username, 
-    password_hash, 
-    password_salt, 
-    is_verified, 
-    is_active, 
-    is_locked, 
-    password_attempts, 
-    changed_initial_password, 
-    locked_time, 
-    created_by, 
-    created_on, 
-    modified_by, 
-    modified_on
-) VALUES (
-    uuid_generate_v4(),  -- Generate a new UUID
-    'b@b.com', 
-    '123456', 
-    '123456', 
-    true,  -- is_verified
-    true,  -- is_active
-    false,  -- is_locked
-    0,  -- password_attempts
-    true,  -- changed_initial_password
-    NULL,  -- locked_time
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- INSERT INTO app.user (
+--     user_id,
+--     user_first_name,
+--     user_middle_name,
+--     user_last_name,
+--     cpf,
+--     rg,
+--     date_of_birth,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     3,  -- Replace with the actual user_id obtained
+--     'Jane',
+--     'A',
+--     'Doe',
+--     '12345678901',  -- Example CPF
+--     'RG123456',     -- Example RG
+--     '1990-01-01',   -- Example date of birth
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
-INSERT INTO app.user_login (
-    user_unique_id, 
-    username, 
-    password_hash, 
-    password_salt, 
-    is_verified, 
-    is_active, 
-    is_locked, 
-    password_attempts, 
-    changed_initial_password, 
-    locked_time, 
-    created_by, 
-    created_on, 
-    modified_by, 
-    modified_on
-) VALUES (
-    uuid_generate_v4(),  -- Generate a new UUID
-    'c@c.com', 
-    '123456', 
-    '123456',  
-    true,  -- is_verified
-    true,  -- is_active
-    false,  -- is_locked
-    0,  -- password_attempts
-    true,  -- changed_initial_password
-    NULL,  -- locked_time
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
-
-INSERT INTO app.user (
-    user_id,
-    user_first_name,
-    user_middle_name,
-    user_last_name,
-    cpf,
-    rg,
-    date_of_birth,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    1,  -- Replace with the actual user_id obtained
-    'Test',
-    'A',
-    'Doe',
-    '12345678901',  -- Example CPF
-    'RG123456',     -- Example RG
-    '1990-01-01',   -- Example date of birth
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
-
-INSERT INTO app.user (
-    user_id,
-    user_first_name,
-    user_middle_name,
-    user_last_name,
-    cpf,
-    rg,
-    date_of_birth,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    2,  -- Replace with the actual user_id obtained
-    'John',
-    'A',
-    'Doe',
-    '12345678901',  -- Example CPF
-    'RG123456',     -- Example RG
-    '1990-01-01',   -- Example date of birth
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
-
-INSERT INTO app.user (
-    user_id,
-    user_first_name,
-    user_middle_name,
-    user_last_name,
-    cpf,
-    rg,
-    date_of_birth,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    3,  -- Replace with the actual user_id obtained
-    'Jane',
-    'A',
-    'Doe',
-    '12345678901',  -- Example CPF
-    'RG123456',     -- Example RG
-    '1990-01-01',   -- Example date of birth
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
-
-INSERT INTO app.user (
-    user_id,
-    user_first_name,
-    user_middle_name,
-    user_last_name,
-    cpf,
-    rg,
-    date_of_birth,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    4,  -- Replace with the actual user_id obtained
-    'Jane',
-    'A',
-    'Doe',
-    '12345678901',  -- Example CPF
-    'RG123456',     -- Example RG
-    '1990-01-01',   -- Example date of birth
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- INSERT INTO app.user (
+--     user_id,
+--     user_first_name,
+--     user_middle_name,
+--     user_last_name,
+--     cpf,
+--     rg,
+--     date_of_birth,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     4,  -- Replace with the actual user_id obtained
+--     'Jane',
+--     'A',
+--     'Doe',
+--     '12345678901',  -- Example CPF
+--     'RG123456',     -- Example RG
+--     '1990-01-01',   -- Example date of birth
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
 -- Insert Developer role
 INSERT INTO app.role (
@@ -336,97 +332,97 @@ INSERT INTO app.role (
     current_timestamp  -- modified_on
 );
 
--- Insert into app.user_role
-INSERT INTO app.user_role (
-    role_id,
-    user_id,
-    is_active,
-    role_start_date,
-    role_end_date,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    2,  -- role_id, matching the inserted role
-    1,  -- user_id, matching the inserted user
-    true,  -- is_active
-    '2024-07-01 00:00:00+00',  -- role_start_date
-    NULL,  -- role_end_date
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- -- Insert into app.user_role
+-- INSERT INTO app.user_role (
+--     role_id,
+--     user_id,
+--     is_active,
+--     role_start_date,
+--     role_end_date,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     2,  -- role_id, matching the inserted role
+--     1,  -- user_id, matching the inserted user
+--     true,  -- is_active
+--     '2024-07-01 00:00:00+00',  -- role_start_date
+--     NULL,  -- role_end_date
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
--- Insert into app.user_role
-INSERT INTO app.user_role (
-    role_id,
-    user_id,
-    is_active,
-    role_start_date,
-    role_end_date,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    1,  -- role_id, matching the inserted role
-    2,  -- user_id, matching the inserted user
-    true,  -- is_active
-    '2024-07-01 00:00:00+00',  -- role_start_date
-    NULL,  -- role_end_date
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- -- Insert into app.user_role
+-- INSERT INTO app.user_role (
+--     role_id,
+--     user_id,
+--     is_active,
+--     role_start_date,
+--     role_end_date,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     1,  -- role_id, matching the inserted role
+--     2,  -- user_id, matching the inserted user
+--     true,  -- is_active
+--     '2024-07-01 00:00:00+00',  -- role_start_date
+--     NULL,  -- role_end_date
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
--- Insert into app.user_role
-INSERT INTO app.user_role (
-    role_id,
-    user_id,
-    is_active,
-    role_start_date,
-    role_end_date,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    3,  -- role_id, matching the inserted role
-    2,  -- user_id, matching the inserted user
-    true,  -- is_active
-    '2024-07-01 00:00:00+00',  -- role_start_date
-    NULL,  -- role_end_date
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- -- Insert into app.user_role
+-- INSERT INTO app.user_role (
+--     role_id,
+--     user_id,
+--     is_active,
+--     role_start_date,
+--     role_end_date,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     3,  -- role_id, matching the inserted role
+--     2,  -- user_id, matching the inserted user
+--     true,  -- is_active
+--     '2024-07-01 00:00:00+00',  -- role_start_date
+--     NULL,  -- role_end_date
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
--- Insert into app.user_role
-INSERT INTO app.user_role (
-    role_id,
-    user_id,
-    is_active,
-    role_start_date,
-    role_end_date,
-    created_by,
-    created_on,
-    modified_by,
-    modified_on
-) VALUES (
-    4,  -- role_id, matching the inserted role
-    3,  -- user_id, matching the inserted user
-    true,  -- is_active
-    '2024-07-01 00:00:00+00',  -- role_start_date
-    NULL,  -- role_end_date
-    0,  -- created_by
-    current_timestamp,  -- created_on
-    0,  -- modified_by
-    current_timestamp  -- modified_on
-);
+-- -- Insert into app.user_role
+-- INSERT INTO app.user_role (
+--     role_id,
+--     user_id,
+--     is_active,
+--     role_start_date,
+--     role_end_date,
+--     created_by,
+--     created_on,
+--     modified_by,
+--     modified_on
+-- ) VALUES (
+--     4,  -- role_id, matching the inserted role
+--     3,  -- user_id, matching the inserted user
+--     true,  -- is_active
+--     '2024-07-01 00:00:00+00',  -- role_start_date
+--     NULL,  -- role_end_date
+--     0,  -- created_by
+--     current_timestamp,  -- created_on
+--     0,  -- modified_by
+--     current_timestamp  -- modified_on
+-- );
 
 insert into app.address_type 
 (address_type_name, address_type_name_ascii, created_by, modified_by) 
@@ -466,7 +462,7 @@ values
 
 
 
-CALL app.usp_seed();
+--CALL app.usp_seed();
 
 
 
