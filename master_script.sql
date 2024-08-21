@@ -60,6 +60,7 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_product_response.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/contact_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/prescription.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/user_password_reset.sql'
 
 
 
