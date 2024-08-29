@@ -26,7 +26,7 @@ BEGIN
                     WHERE user_id = p_user_id
                     AND address_type_id = p_address_type_id
                     AND street_id = p_street_id
-                   ) THEN
+                ) THEN
 	        p_out_message := 'Usuario com esse endereco ja registrado!';
             p_error := true;
             RETURN;
@@ -48,6 +48,7 @@ BEGIN
         INSERT INTO app.user_address 
         (
             user_id,
+            street_id,
             address_id,
             address_type_id,
             main_address,
@@ -57,6 +58,7 @@ BEGIN
         VALUES 
         (
             p_user_id,
+            p_street_id,
             p_out_address_id,
             p_address_type_id,
             p_main_address,
