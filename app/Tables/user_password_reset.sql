@@ -12,6 +12,6 @@ create table app.user_password_reset
 	constraint uq_user_token unique (user_token),
     constraint fk_user_password_reset_user foreign key (user_id) references app.user_login(user_id),
 	constraint fk_user_password_reset_created_by foreign key (created_by) references app.user_login(user_id),
-	constraint fk_user_password_reset_modified_by foreign key (modified_by) references app.user_login(user_id)
+	constraint fk_user_password_reset_modified_by foreign key (modified_by) references app.user_login(user_id),
     constraint ck_token_expiry CHECK (token_expiry <= 10)
 );
