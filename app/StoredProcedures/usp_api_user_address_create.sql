@@ -6,6 +6,7 @@ CREATE OR REPLACE PROCEDURE app.usp_api_user_address_create(
     IN p_complement VARCHAR(256),
     IN p_address_type_id SMALLINT,
     OUT p_out_address_id INTEGER,
+    OUT p_out_message VARCHAR(100),
     IN p_longitude DOUBLE PRECISION DEFAULT NULL,
     IN p_latitude DOUBLE PRECISION DEFAULT NULL,
     IN p_main_address	BOOLEAN DEFAULT false, 
@@ -16,7 +17,6 @@ CREATE OR REPLACE PROCEDURE app.usp_api_user_address_create(
 AS $$
 DECLARE
     l_context TEXT;
-	p_out_message VARCHAR(100);
 BEGIN
     BEGIN
 
