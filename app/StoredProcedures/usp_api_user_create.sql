@@ -34,7 +34,7 @@ BEGIN
 
         IF EXISTS (SELECT 1 FROM app.user WHERE user_id = p_user_id) THEN
 	        p_out_message := 'Usuario ja registrado!';
-            p_error := false;
+            p_error := true;
             RETURN;
     	END IF;
 
