@@ -15,4 +15,4 @@ create table app.facility
     constraint fk_facility_address foreign key (address_id) references app.address(address_id),
     constraint fk_facility_created_by foreign key (created_by) references app.user_login(user_id),
 	constraint fk_facility_modified_by foreign key (modified_by) references app.user_login(user_id)
-)
+);

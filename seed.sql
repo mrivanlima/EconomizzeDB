@@ -424,13 +424,6 @@ INSERT INTO app.role (
 --     current_timestamp  -- modified_on
 -- );
 
-insert into app.address_type 
-(address_type_name, address_type_name_ascii, created_by, modified_by) 
-VALUES
-('Residência', 'Residencia', 0, 0),
-('Trabalho', 'Trabalho', 0, 0),
-('Outro', 'Outro', 0, 0);
-
 insert into app.contact_type 
 (contact_type_name, contact_type_name_ascii, created_by, modified_by)
 values

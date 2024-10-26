@@ -41,13 +41,13 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/neighborhood.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/street.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/address.sql'
-\i 'C:/Development/EconomizzeDB/app/Tables/address_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/facility.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_token.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_address.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/drugstore.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/drugstore_neighborhood_subscription.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/prescription.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/quote.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/product.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_product.sql'
@@ -59,8 +59,8 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_response.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_product_response.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/contact_type.sql'
-\i 'C:/Development/EconomizzeDB/app/Tables/prescription.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_password_reset.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/quote_prescription.sql'
 
 
 
@@ -77,7 +77,6 @@
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_login_read_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_role_read.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_read_by_id.sql'
-\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_address_type_read_all.sql'
 
 
 
@@ -89,7 +88,6 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_address_create.sql'
-\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_address_type_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_city_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_drugstore_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_group_create.sql'
@@ -97,6 +95,7 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_state_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_state_update_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_street_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_quote_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_address_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_role_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_setup.sql'
@@ -109,6 +108,7 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_role_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_facility_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_prescription_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_quote_prescription_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_version_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_create.sql'
 
@@ -121,6 +121,7 @@
 --Add Views
 
 \i 'C:/Development/EconomizzeDB/app/Views/v_street_details.sql'
+\i 'C:/Development/EconomizzeDB/app/Views/v_user_address.sql'
 \i 'C:/Development/EconomizzeDB/app/Views/v_user_login_details.sql'
 
 --Add Indexes
