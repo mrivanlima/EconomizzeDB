@@ -5,6 +5,7 @@ SELECT s.street_id,
        s.street_name_ascii,
 	   s.zipcode,
        n.neighborhood_name,
+       n.neighborhood_id,
        c.city_name,
        st.state_name
 	   

@@ -6,10 +6,10 @@ CREATE OR REPLACE PROCEDURE app.usp_api_prescription_create(
     OUT p_out_prescription_id BIGINT,
     IN p_prescription_unique UUID,
     IN p_prescription_url VARCHAR(200),
-    IN p_facility_id INT,
-    IN p_professional_id INT,
-    IN p_created_by INTEGER,
-    IN p_modified_by INTEGER,
+    IN p_created_by INTEGER DEFAULT NULL,
+    IN p_modified_by INTEGER DEFAULT NULL,
+    IN p_facility_id INT DEFAULT NULL,
+    IN p_professional_id INT DEFAULT NULL,
     INOUT p_error BOOLEAN DEFAULT FALSE
 )
 AS $$
