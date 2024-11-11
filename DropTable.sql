@@ -28,6 +28,7 @@ drop table if exists app.professional cascade;
 drop table if exists app.prescription cascade;
 drop table if exists app.prescription cascade;
 drop table if exists app.user_password_reset cascade;
+drop table if exists app.store cascade;
 
 
 

@@ -61,6 +61,7 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/contact_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_password_reset.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_prescription.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/store.sql'
 
 
 
