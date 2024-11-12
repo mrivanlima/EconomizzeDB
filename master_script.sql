@@ -80,6 +80,8 @@
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_role_read.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_read_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_store_read_by_id.sql'
+\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_store_type_read_all.sql'
+
 
 
 
