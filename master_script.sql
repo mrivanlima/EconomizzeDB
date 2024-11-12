@@ -114,13 +114,12 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_quote_prescription_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_version_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_product_create.sql'
-
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_by_uuid.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_by_username_for_lock.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_password.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_confirm_update.sql'
-
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_update_by_id.sql'
 
 
 --Add Views
