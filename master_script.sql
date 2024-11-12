@@ -61,6 +61,7 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/contact_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/user_password_reset.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_prescription.sql'
+\i 'C:/Development/EconomizzeDB/app/Tables/store_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/store.sql'
 
 
@@ -78,6 +79,7 @@
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_login_read_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_role_read.sql'
 \i 'C:/Development/EconomizzeDB/app/Functions/usp_api_user_read_by_id.sql'
+\i 'C:/Development/EconomizzeDB/app/Functions/usp_api_store_read_by_id.sql'
 
 
 
@@ -117,6 +119,8 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_by_username_for_lock.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_update_password.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_confirm_update.sql'
+
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_create.sql'
 
 
 --Add Views

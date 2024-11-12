@@ -476,3 +476,15 @@ INSERT INTO app.state (
     0,                        -- created_by (must be a valid user_id in app.user_login)
     0                         -- modified_by (must be a valid user_id in app.user_login)
 );
+
+INSERT INTO app.store_type (
+    store_type_name,
+    store_type_name_ascii,
+    created_by,
+    created_on,
+    modified_by,
+    modified_on
+) 
+VALUES 
+    ('Drogaria', unaccent('Drogaria'), 1, NOW(), 1, NOW()),
+    ('Farmacia', unaccent('Farmacia'), 2, NOW(), 2, NOW());
