@@ -63,7 +63,7 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/quote_prescription.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/store_type.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/store.sql'
-
+\i 'C:/Development/EconomizzeDB/app/Tables/store_json.sql'
 
 
 --Add app functions
