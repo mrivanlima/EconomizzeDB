@@ -122,6 +122,8 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_user_login_confirm_update.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_update_by_id.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_json_create.sql'
+
 
 
 --Add Views
