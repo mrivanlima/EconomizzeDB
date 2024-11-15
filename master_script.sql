@@ -65,7 +65,7 @@
 \i 'C:/Development/EconomizzeDB/app/Tables/store.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/store_json.sql'
 \i 'C:/Development/EconomizzeDB/app/Tables/store_address.sql'
-
+\i 'C:/Development/EconomizzeDB/app/Tables/store_phone.sql'
 
 
 --Add app functions

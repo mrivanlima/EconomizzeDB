@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS app.quote_prescription CASCADE;
 CREATE TABLE IF NOT EXISTS app.quote_prescription
 (
 	quote_id bigint,

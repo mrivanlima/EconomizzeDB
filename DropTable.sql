@@ -32,6 +32,11 @@ drop table if exists app.store cascade;
 drop table if exists app.store_type cascade;
 drop table if exists app.store_json cascade;
 drop table if exists app.store_address cascade;
+drop table if exists app.store_phone cascade;
+DROP TABLE IF EXISTS app.quote_prescription CASCADE;
+-- drop table if exists app.conformity cascade;
+-- drop table if exists app.presentation cascade;
+
 
 
 
