@@ -126,6 +126,10 @@
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_update_by_id.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_json_create.sql'
 \i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_address_create.sql'
+\i 'C:/Development/EconomizzeDB/app/StoredProcedures/usp_api_store_phone_create.sql'
+
+
+
 
 
 
