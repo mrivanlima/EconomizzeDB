@@ -15,7 +15,7 @@ CREATE TABLE app.store_address (
     modified_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     constraint pk_store_address primary key (store_address_id),
     constraint fk_store_address_store foreign key (created_by) references app.user_login(user_id),
-	constraint fk_store_address_street foreign key (modified_by) references app.user_login(user_id)
+	constraint fk_store_address_street foreign key (modified_by) references app.user_login(user_id),
 	constraint fk_store_address_created_by foreign key (created_by) references app.user_login(user_id),
 	constraint fk_store_address_modified_by foreign key (modified_by) references app.user_login(user_id)
 );
