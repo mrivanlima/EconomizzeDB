@@ -31,6 +31,7 @@ drop table if exists app.user_password_reset cascade;
 drop table if exists app.store cascade;
 drop table if exists app.store_type cascade;
 drop table if exists app.store_json cascade;
+drop table if exists app.store_address cascade;
 
 
 
