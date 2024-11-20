@@ -1,4 +1,4 @@
-DROP FUNCTION IF EXISTS app.usp_api_store_read_read_by_id;
+DROP FUNCTION IF EXISTS app.usp_api_store_read_by_id(integer);
 
 CREATE OR REPLACE FUNCTION app.usp_api_store_read_by_id(
     p_store_id INTEGER
@@ -8,6 +8,7 @@ RETURNS TABLE (
     store_type_id SMALLINT,
     store_unique_id UUID,
     cnpj VARCHAR(20),
+    sanitized_cnpj VARCHAR(20),
     store_name VARCHAR(100),
     store_name_ascii VARCHAR(100),
     is_active BOOLEAN,
@@ -24,6 +25,7 @@ BEGIN
         s.store_type_id,
         s.store_unique_id,
         s.cnpj,
+        s.sanitized_cnpj,
         s.store_name,
         s.store_name_ascii,
         s.is_active,

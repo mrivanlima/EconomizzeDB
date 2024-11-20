@@ -22,7 +22,6 @@ BEGIN
         store_unique_id,
         cnpj,
 		sanitized_cnpj,
-		sanitized_cnpj,
         store_name,
         store_name_ascii,
         is_active,
